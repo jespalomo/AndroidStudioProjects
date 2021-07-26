@@ -15,6 +15,24 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e223d875-4190-40f6-bf1f-01a3c9fedcd0" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,10 +40,39 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\jespa\.android\avd\Pixel_4_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="prueba" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="prueba" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="prueba" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -47,10 +94,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\jespa\.android\avd\Pixel_4_API_30.avd" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-26T12:36:37.319628600Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TFG/prueba" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.2091133796">
@@ -131,11 +175,18 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="200" y="110" key="#PSD" timestamp="1627315532514">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="200" y="110" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1627315532514" />
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1627299236915">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -152,42 +203,42 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="527" y="153" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1627235821218" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1627316417875">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1627319133174">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1627316417875" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1627315558562">
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1627319133174" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1627303760109">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627315558562" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1627315558562">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627303760109" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1627303760109">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627315558562" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1627315558562">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627303760109" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1627303760109">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627315558562" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1627315558562">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627303760109" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1627303760109">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627315558562" />
-    <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1627315557244">
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627303760109" />
+    <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1627303755755">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627315557244" />
-    <state width="1323" height="179" key="GridCell.Tab.1.center" timestamp="1627315557244">
+    <state width="1323" height="179" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627303755755" />
+    <state width="1323" height="179" key="GridCell.Tab.1.center" timestamp="1627303755755">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1627315557244" />
-    <state width="1323" height="179" key="GridCell.Tab.1.left" timestamp="1627315557244">
+    <state width="1323" height="179" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1627303755755" />
+    <state width="1323" height="179" key="GridCell.Tab.1.left" timestamp="1627303755755">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1627315557244" />
-    <state width="1323" height="179" key="GridCell.Tab.1.right" timestamp="1627315557244">
+    <state width="1323" height="179" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1627303755755" />
+    <state width="1323" height="179" key="GridCell.Tab.1.right" timestamp="1627303755755">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1627315557244" />
+    <state width="1323" height="179" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1627303755755" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1627300492966">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

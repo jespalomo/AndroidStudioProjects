@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">COVID TRAVELLER</string>
+    <string name="city1">CITY 1</string>
+    <string name="city2">CITY 2</string>
+    <string name="trip">TRIP</string>
+    <string name="borders">BORDERS CROSSED:</string>
+    <string name="borders_">Slovenian border</string>
+    <string name="restrictions">RESTRICTIONS</string>
+    <string name="restrictions_">PCR test...</string>
+    <string-array name="countries">
+        <item>Slovenia</item>
+        <item>Austria</item>
+        <item>Croatia</item>
+        <item>Poland</item>
+        <item>Hungary</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+</resources>

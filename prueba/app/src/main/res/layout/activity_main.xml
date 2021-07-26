@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <AutoCompleteTextView
+        android:id="@+id/city1"
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/city1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.236" />
+
+    <AutoCompleteTextView
+        android:id="@+id/city2"
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/city2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city1"
+        app:layout_constraintVertical_bias="0.229" />
+
+
+    <Button
+        android:id="@+id/botonMapa"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/botonredondo"
+        android:drawableTop="@drawable/mapa_icono"
+        android:onClick="botonMapa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city2"
+        app:layout_constraintVertical_bias="0.348" />
+
+    <Button
+        android:id="@+id/botonSpecs"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/botonredondo"
+        android:drawableTop="@drawable/lista_icono"
+        android:onClick="botonSpecs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.669"
+        app:layout_constraintStart_toEndOf="@+id/botonMapa"
+        app:layout_constraintTop_toBottomOf="@+id/city2"
+        app:layout_constraintVertical_bias="0.348" />
+
+    <Button
+        android:id="@+id/botonClinicas"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/botonredondo"
+        android:drawableTop="@drawable/clinica_icono"
+        android:onClick="botonMapa"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city2"
+        app:layout_constraintVertical_bias="0.645" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
