@@ -10,6 +10,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CustomCap;
 import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
@@ -71,7 +72,11 @@ public class MapsActivity extends AppCompatActivity implements
                         city2_));
 
         polyline1.setTag("Ruta mas corta");
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(city1_));
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(city1_)
+                .zoom(7)
+                .build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
     private static final int COLOR_BLACK_ARGB = 0xff000000;
     private static final int POLYLINE_STROKE_WIDTH_PX = 12;

@@ -94,7 +94,7 @@
         android:layout_height="50dp"
         android:background="@drawable/botonredondo"
         android:drawableTop="@drawable/clinica_icono"
-        android:onClick="botonMapa"
+        android:onClick="botonUbi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
             next.putExtra("restricciones2", restricciones2);
             startActivity(next);
     }
+    public void botonUbi(View view){
+        Intent next = new Intent(this, Ubicacion.class);
+        startActivity(next);
+    }
     //Metodo para hacer la consulta a la base de datos de mySQL
     private void consulta(String URL){
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
