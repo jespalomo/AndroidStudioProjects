@@ -60,10 +60,10 @@ public class MapsActivity extends AppCompatActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng city1_ = new LatLng(-34, 151);
-        LatLng city2_ = new LatLng(-19, 125);
-        mMap.addMarker(new MarkerOptions().position(city1_).title("Marker in" + city1));
-        mMap.addMarker(new MarkerOptions().position(city2_).title("Marker in" + city2));
+        LatLng city1_ = new LatLng(latVertical1, latHorizontal1);
+        LatLng city2_ = new LatLng(latVertical2, latHorizontal2);
+        mMap.addMarker(new MarkerOptions().position(city1_).title("Marker in " + city1));
+        mMap.addMarker(new MarkerOptions().position(city2_).title("Marker in " + city2));
         Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(

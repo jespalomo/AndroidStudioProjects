@@ -40,7 +40,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\jespa\.android\avd\Pixel_4_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\jespa\.android\avd\Pixel_3a_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -91,8 +91,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\jespa\.android\avd\Pixel_4_API_30.avd" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-26T12:36:37.319628600Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\jespa\.android\avd\Pixel_3a_API_30.avd" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-27T12:49:37.718240700Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -185,20 +185,25 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1627299236915">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1627299236915" />
-    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1626978238179">
+    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1627385274298">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1626978238179" />
-    <state x="263" y="118" key="AndroidCreateResourceFileDialog" timestamp="1627296244015">
+    <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1627385274298" />
+    <state x="263" y="118" key="AndroidCreateResourceDirectoryDialog" timestamp="1627320865903">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="263" y="118" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1627296244015" />
+    <state x="263" y="118" key="AndroidCreateResourceDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1627320865903" />
+    <state x="263" y="118" key="AndroidCreateResourceFileDialog" timestamp="1627320895015">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="263" y="118" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1627320895015" />
     <state x="527" y="153" key="AndroidCreateXmlResourceDialog" timestamp="1627235821218">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -207,22 +212,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1627319133174" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1627303760109">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1627390518864">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627303760109" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1627303760109">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627390518864" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1627390518863">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627303760109" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1627303760109">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627390518863" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1627390518863">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627303760109" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1627303760109">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627390518863" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1627390518864">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627303760109" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627390518864" />
     <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1627303755755">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -23,6 +23,6 @@ public class Specs extends AppCompatActivity {
         trip = findViewById(R.id.trip);
         trip.setText("Trip from " + city1 + " to " + city2);
         restricciones_ = findViewById(R.id.restrictions_);
-        restricciones_.setText(restricciones1+restricciones2);
+        restricciones_.setText(city1+": "+restricciones1+"\n"+city2+": "+restricciones2);
         }
 }

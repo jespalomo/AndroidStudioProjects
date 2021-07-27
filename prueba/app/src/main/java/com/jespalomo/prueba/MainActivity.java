@@ -26,10 +26,13 @@ public class MainActivity extends AppCompatActivity {
     double latVertical, latHorizontal, latVertical1, latHorizontal1, latVertical2, latHorizontal2;
     private String input1="", input2="", restricciones, restricciones1, restricciones2, nombre;
     AutoCompleteTextView c1,c2;
+    TextView prueba;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        prueba = (TextView)findViewById(R.id.prueba);
 
         String[] countries = getResources().getStringArray(R.array.countries);
         c1 = (AutoCompleteTextView)findViewById(R.id.city1);
@@ -42,45 +45,32 @@ public class MainActivity extends AppCompatActivity {
     }
     //Metodo para descargar datos de la bdd y transferir los datos a la actividad del mapa
     public void botonMapa(View view){
+        Intent next = new Intent(this, MapsActivity.class);
+        next.putExtra("city1", input1);
+        next.putExtra("latHorizontal1", latHorizontal1);
+        next.putExtra("latVertical1", latVertical1);
+        next.putExtra("city2", input2);
+        next.putExtra("latHorizontal2", latHorizontal2);
+        next.putExtra("latVertical2", latVertical2);
+        startActivity(next);
+    }
+    public void confirma1(View view){
         input1 = c1.getText().toString();
+        consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input1+"");
+        restricciones1=restricciones;
+        latVertical1=latVertical;
+        latHorizontal1=latHorizontal;
+    }
+    public void confirma2(View view){
         input2 = c2.getText().toString();
-        if(input1 != "" && input2 != ""){
-            consulta("http://192.168.0.44:80/dev/consultabien.php?codigo="+input1+"");
-            latVertical1=latVertical;
-            latHorizontal1=latHorizontal;
-
-            consulta("http://192.168.0.44:80/dev/consultabien.php?codigo="+input2+"");
-            latVertical2=latVertical;
-            latHorizontal2=latHorizontal;
-
-            Intent next = new Intent(this, MapsActivity.class);
-            next.putExtra("city1", input1);
-            next.putExtra("latHorizontal1", latHorizontal1);
-            next.putExtra("latVertical1", latVertical1);
-            next.putExtra("city2", input2);
-            next.putExtra("latHorizontal2", latHorizontal2);
-            next.putExtra("latVertical2", latVertical2);
-            startActivity(next);
-        } else if(input1==""){
-            Toast.makeText(getApplicationContext(),"Por favor, ingresa una ciudad en el primer slot", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(getApplicationContext(),"Por favor, ingresa una ciudad en el segundo slot", Toast.LENGTH_SHORT).show();
-        }
-
+        consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input2+"");
+        restricciones2=restricciones;
+        latVertical2=latVertical;
+        latHorizontal2=latHorizontal;
     }
     //Metodo para descargar datos de la bdd y transferir los datos a la actividad de detalles
     public void botonSpecs(View view){
 
-        input1 = c1.getText().toString();
-        input2 = c2.getText().toString();
-        if(input1 != "" && input2 != ""){
-            consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input1+"");
-            //id1=id;
-            restricciones1=restricciones;
-
-            consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input2+"");
-            //id2=id;
-            restricciones2=restricciones;
             Intent next = new Intent(this, Specs.class);
             next.putExtra("city1", input1);
             //next.putExtra("id1", id1);
@@ -89,12 +79,6 @@ public class MainActivity extends AppCompatActivity {
             //next.putExtra("id2", id2);
             next.putExtra("restricciones2", restricciones2);
             startActivity(next);
-        } else if(input1==""){
-            Toast.makeText(getApplicationContext(),"Por favor, ingresa una ciudad en el primer slot", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(getApplicationContext(),"Por favor, ingresa una ciudad en el segundo slot", Toast.LENGTH_SHORT).show();
-        }
-
     }
     //Metodo para hacer la consulta a la base de datos de mySQL
     private void consulta(String URL){
@@ -107,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         jsonObject = response.getJSONObject(i);
                         id = jsonObject.getInt("id");
                         nombre= jsonObject.getString("nombre");
-                        restricciones = jsonObject.getString("restriccciones");
+                        restricciones = jsonObject.getString("restricciones");
                         latVertical = jsonObject.getDouble("latVertical");
                         latHorizontal = jsonObject.getDouble("latHorizontal");
                     } catch (JSONException e) {
