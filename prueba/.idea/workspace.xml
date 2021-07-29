@@ -78,6 +78,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -92,7 +93,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@C:\Users\jespa\.android\avd\Pixel_3a_API_30.avd" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-27T12:49:37.718240700Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-29T08:26:39.762570500Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -215,22 +216,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1627319133174" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1627390518864">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1627499055489">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627390518864" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1627390518863">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627499055489" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1627499055489">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627390518863" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1627390518863">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627499055489" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1627499055489">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627390518863" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1627390518864">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627499055489" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1627499055489">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627390518864" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627499055489" />
     <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1627303755755">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

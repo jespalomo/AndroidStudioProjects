@@ -3,6 +3,7 @@ package com.jespalomo.prueba;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -19,6 +20,10 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.RoundCap;
 import com.jespalomo.prueba.databinding.ActivityMapsBinding;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements
         OnMapReadyCallback{
@@ -61,6 +66,7 @@ public class MapsActivity extends AppCompatActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        /*
         LatLng city1_ = new LatLng(latVertical1, latHorizontal1);
         LatLng city2_ = new LatLng(latVertical2, latHorizontal2);
         mMap.addMarker(new MarkerOptions().position(city1_).title("Marker in " + city1));
@@ -80,11 +86,11 @@ public class MapsActivity extends AppCompatActivity implements
     }
     private static final int COLOR_BLACK_ARGB = 0xff000000;
     private static final int POLYLINE_STROKE_WIDTH_PX = 12;
-
-    /**
-     * Styles the polyline, based on type.
-     * @param polyline The polyline object that needs styling.
-     */
+*/
+        /**
+         * Styles the polyline, based on type.
+         * @param polyline The polyline object that needs styling.
+         */
     /*
     private void stylePolyline(Polyline polyline) {
         String type = "";
@@ -111,4 +117,52 @@ public class MapsActivity extends AppCompatActivity implements
         polyline.setJointType(JointType.ROUND);
     }
     */
+        LatLng center = null;
+        ArrayList<LatLng> points = null;
+        PolylineOptions lineOptions = null;
+
+        // setUpMapIfNeeded();
+
+        // recorriendo todas las rutas
+        for (int i = 0; i < Utilidades.routes.size(); i++) {
+            points = new ArrayList<LatLng>();
+            lineOptions = new PolylineOptions();
+
+            // Obteniendo el detalle de la ruta
+            List<HashMap<String, String>> path = Utilidades.routes.get(i);
+
+            // Obteniendo todos los puntos y/o coordenadas de la ruta
+            for (int j = 0; j < path.size(); j++) {
+                HashMap<String, String> point = path.get(j);
+
+                double lat = Double.parseDouble(point.get("lat"));
+                double lng = Double.parseDouble(point.get("lng"));
+                LatLng position = new LatLng(lat, lng);
+
+                if (center == null) {
+                    //Obtengo la 1ra coordenada para centrar el mapa en la misma.
+                    center = new LatLng(lat, lng);
+                }
+                points.add(position);
+            }
+
+            // Agregamos todos los puntos en la ruta al objeto LineOptions
+            lineOptions.addAll(points);
+            //Definimos el grosor de las Polilíneas
+            lineOptions.width(2);
+            //Definimos el color de la Polilíneas
+            lineOptions.color(Color.BLUE);
+        }
+
+        // Dibujamos las Polilineas en el Google Map para cada ruta
+        mMap.addPolyline(lineOptions);
+
+        LatLng origen = new LatLng(Utilidades.coordenadas.getLatitudInicial(), Utilidades.coordenadas.getLongitudInicial());
+        mMap.addMarker(new MarkerOptions().position(origen).title("Lat: " + Utilidades.coordenadas.getLatitudInicial() + " - Long: " + Utilidades.coordenadas.getLongitudInicial()));
+
+        LatLng destino = new LatLng(Utilidades.coordenadas.getLatitudFinal(), Utilidades.coordenadas.getLongitudFinal());
+        mMap.addMarker(new MarkerOptions().position(destino).title("Lat: " + Utilidades.coordenadas.getLatitudFinal() + " - Long: " + Utilidades.coordenadas.getLongitudFinal()));
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(center, 15));
+    }
 }
