@@ -82,7 +82,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1vgGX1X2Uo075Oy6bzXd9AEVOfp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -207,14 +207,15 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="263" y="118" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1627320895015" />
-    <state x="527" y="153" key="AndroidCreateXmlResourceDialog" timestamp="1627235821218">
+    <state x="527" y="153" key="AndroidCreateXmlResourceDialog" timestamp="1627568716004">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="527" y="153" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1627235821218" />
+    <state x="527" y="153" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1627568716004" />
     <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1627319133174">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1627319133174" />
+<<<<<<< Updated upstream
     <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1627390518864">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -231,6 +232,24 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627390518864" />
+=======
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1627568184044">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1627568184044" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1627568184044">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1627568184044" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1627568184043">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1627568184043" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1627568184044">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1627568184044" />
+>>>>>>> Stashed changes
     <state width="1323" height="179" key="GridCell.Tab.1.bottom" timestamp="1627303755755">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

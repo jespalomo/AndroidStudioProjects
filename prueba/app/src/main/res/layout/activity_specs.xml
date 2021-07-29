@@ -5,45 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Specs">
+
     <TextView
         android:id="@+id/borders_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/borders_"
         android:textSize="16sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borders"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <TextView
         android:id="@+id/restrictions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/restrictions"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borders"
-        app:layout_constraintVertical_bias="0.22" />
+        app:layout_constraintVertical_bias="0.328" />
 
     <TextView
         android:id="@+id/restrictions_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/restrictions_"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restrictions"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintVertical_bias="0.15" />
 
     <TextView
         android:id="@+id/trip"
@@ -67,10 +68,27 @@
         android:text="@string/borders"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trip"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintVertical_bias="0.029" />
+
+    <Button
+        android:id="@+id/botonMapa"
+        android:layout_width="126dp"
+        android:layout_height="51dp"
+        android:background="@drawable/botonredondo"
+        android:onClick="botonMapa"
+        android:text="@string/botonmapa"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.807" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,46 +33,32 @@
 
 
     <Button
-        android:id="@+id/botonMapa"
-        android:layout_width="50dp"
+        android:id="@+id/botonSpecs"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:background="@drawable/botonredondo"
-        android:drawableTop="@drawable/mapa_icono"
-        android:onClick="botonMapa"
+        android:onClick="botonSpecs"
+        android:text="@string/botonspecs"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city2"
-        app:layout_constraintVertical_bias="0.348" />
-
-    <Button
-        android:id="@+id/botonSpecs"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/botonredondo"
-        android:drawableTop="@drawable/lista_icono"
-        android:onClick="botonSpecs"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.669"
-        app:layout_constraintStart_toEndOf="@+id/botonMapa"
-        app:layout_constraintTop_toBottomOf="@+id/city2"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.359" />
 
     <Button
         android:id="@+id/confirma1"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/botonredondo"
         android:drawableTop="@drawable/lista_icono"
         android:onClick="confirma1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toEndOf="@+id/botonMapa"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.231" />
+        app:layout_constraintVertical_bias="0.237" />
 
     <Button
         android:id="@+id/confirma2"
@@ -83,35 +69,65 @@
         android:onClick="confirma2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toEndOf="@+id/botonMapa"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toEndOf="@+id/city2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintVertical_bias="0.453" />
 
     <Button
         android:id="@+id/botonClinicas"
-        android:layout_width="50dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:background="@drawable/botonredondo"
-        android:drawableTop="@drawable/clinica_icono"
         android:onClick="botonUbi"
+        android:text="@string/botonubi"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city2"
-        app:layout_constraintVertical_bias="0.645" />
+        app:layout_constraintTop_toBottomOf="@+id/botonSpecs"
+        app:layout_constraintVertical_bias="0.464" />
 
     <TextView
         android:id="@+id/prueba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/city1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.116" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/city1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/city1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.882" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/city2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/city2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

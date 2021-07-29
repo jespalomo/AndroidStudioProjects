@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, countries);
         c2.setAdapter(adapter2);
 
+<<<<<<< Updated upstream
     }
     //Metodo para descargar datos de la bdd y transferir los datos a la actividad del mapa
     public void botonMapa(View view){
@@ -53,13 +54,20 @@ public class MainActivity extends AppCompatActivity {
         next.putExtra("latHorizontal2", latHorizontal2);
         next.putExtra("latVertical2", latVertical2);
         startActivity(next);
+=======
+>>>>>>> Stashed changes
     }
+    //Metodo para descargar datos de la bdd y transferir los datos a la actividad del mapa
     public void confirma1(View view){
         input1 = c1.getText().toString();
         consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input1+"");
+<<<<<<< Updated upstream
         restricciones1=restricciones;
+=======
+>>>>>>> Stashed changes
         latVertical1=latVertical;
         latHorizontal1=latHorizontal;
+        prueba.setText(input1);
     }
     public void confirma2(View view){
         input2 = c2.getText().toString();
@@ -67,9 +75,11 @@ public class MainActivity extends AppCompatActivity {
         restricciones2=restricciones;
         latVertical2=latVertical;
         latHorizontal2=latHorizontal;
+        prueba.setText(input2);
     }
     //Metodo para descargar datos de la bdd y transferir los datos a la actividad de detalles
     public void botonSpecs(View view){
+<<<<<<< Updated upstream
 
             Intent next = new Intent(this, Specs.class);
             next.putExtra("city1", input1);
@@ -79,6 +89,19 @@ public class MainActivity extends AppCompatActivity {
             //next.putExtra("id2", id2);
             next.putExtra("restricciones2", restricciones2);
             startActivity(next);
+=======
+        Intent next = new Intent(this, Specs.class);
+        next.putExtra("city1", input1);
+        next.putExtra("id1", id1);
+        next.putExtra("latVertical1", latVertical1);
+        next.putExtra("latHorizontal1", latHorizontal1);
+        next.putExtra("city2", input2);
+        next.putExtra("id2", id2);
+        next.putExtra("restricciones2", restricciones2);
+        next.putExtra("latVertical2", latVertical2);
+        next.putExtra("latHorizontal2", latHorizontal2);
+        startActivity(next);
+>>>>>>> Stashed changes
     }
     public void botonUbi(View view){
         Intent next = new Intent(this, Ubicacion.class);

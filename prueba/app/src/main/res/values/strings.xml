@@ -1,18 +1,57 @@
 <resources>
     <string name="app_name">COVID TRAVELLER</string>
-    <string name="city1">CIUDAD 1</string>
-    <string name="city2">CIUDAD 2</string>
+    <string name="city1">CIUDAD DE ORIGEN</string>
+    <string name="city2">CIUDAD DE DESTINO</string>
+    <string name="botonmapa">VER EN EL MAPA</string>
+    <string name="botonspecs">VER DETALLES DEL VIAJE</string>
+    <string name="botonubi">CLINICAS EN MI ZONA</string>
     <string name="trip">TRIP</string>
     <string name="borders">BORDERS CROSSED:</string>
     <string name="borders_">Slovenian border</string>
     <string name="restrictions">RESTRICTIONS</string>
     <string name="restrictions_">PCR test...</string>
     <string-array name="countries">
-        <item>Slovenia</item>
+        <item>Albania</item>
+        <item>Alemania</item>
+        <item>Andorra</item>
         <item>Austria</item>
-        <item>Croatia</item>
-        <item>Poland</item>
-        <item>Hungary</item>
+        <item>Belgica</item>
+        <item>Bielorrusia</item>
+        <item>Bosnia y Herzegovina</item>
+        <item>Bulgaria</item>
+        <item>Ciudad del Vaticano</item>
+        <item>Croacia</item>
+        <item>Dinamarca</item>
+        <item>Eslovaquia</item>
+        <item>Eslovenia</item>
+        <item>España</item>
+        <item>Estonia</item>
+        <item>Finlandia</item>
+        <item>Francia</item>
+        <item>Grecia</item>
+        <item>Hungria</item>
+        <item>Italia</item>
+        <item>Letonia</item>
+        <item>Liechtenstein</item>
+        <item>Lituania</item>
+        <item>Luxemburgo</item>
+        <item>Macedonia del Norte</item>
+        <item>Moldavia</item>
+        <item>Monaco</item>
+        <item>Montenegro</item>
+        <item>Noruega</item>
+        <item>Paises Bajos</item>
+        <item>Polonia</item>
+        <item>Portugal</item>
+        <item>Republica Checa</item>
+        <item>Rumania</item>
+        <item>Rusia</item>
+        <item>San Marino</item>
+        <item>Serbia</item>
+        <item>Suecia</item>
+        <item>Suecia</item>
+        <item>Suiza</item>
+        <item>Ucrania</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_ubicacion">Map</string>
