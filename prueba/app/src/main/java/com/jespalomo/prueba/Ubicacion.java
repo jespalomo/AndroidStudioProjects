@@ -6,12 +6,21 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,9 +30,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.jespalomo.prueba.databinding.ActivityUbicacionBinding;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Location l;
+    //private double latVertical,latHorizontal,latVertical1,latHorizontal1, suma=1000.0;
+    //private String nombre, nombre1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +50,23 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getLocalizacion();
+        //buscaClinica(l.getLatitude(),l.getLongitude());
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.home) {
+            Intent next = new Intent(this, MainActivity.class);
+            startActivity(next);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void getLocalizacion() {
         int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
         if(permiso == PackageManager.PERMISSION_DENIED){
@@ -77,7 +108,6 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                         .tilt(45)
                         .build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
             }
 
             @Override
@@ -96,5 +126,45 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             }
         };
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        }
     }
+    /*
+    private void consulta(String URL){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        latVertical = jsonObject.getDouble("latVertical");
+                        latHorizontal = jsonObject.getDouble("latHorizontal");
+                        nombre = jsonObject.getString("nombre");
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+    private void buscaClinica(double latV, double latH){
+        for(int i=0; i<41; i++){
+            consulta("http://192.168.0.44/dev/consultaubi.php?id="+i+"");
+            if((latV-latVertical)+(latH-latHorizontal)<suma){
+                suma=(latV-latVertical)+(latH-latHorizontal);
+                latVertical1=latVertical;
+                latHorizontal1=latHorizontal;
+                nombre1=nombre;
+            }
+        }
+        LatLng clinica = new LatLng(latVertical, latHorizontal1);
+        mMap.addMarker(new MarkerOptions().position(clinica).title(nombre1));
+    }*/
+}

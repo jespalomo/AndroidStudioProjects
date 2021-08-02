@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">COVID TRAVELLER</string>
-    <string name="city1">CIUDAD DE ORIGEN</string>
-    <string name="city2">CIUDAD DE DESTINO</string>
+    <string name="city1">PAIS DE ORIGEN</string>
+    <string name="city2">PAIS DE DESTINO</string>
     <string name="botonmapa">VER EN EL MAPA</string>
     <string name="botonspecs">VER DETALLES DEL VIAJE</string>
     <string name="botonubi">CLINICAS EN MI ZONA</string>
+    <string name="home">Home</string>
     <string name="trip">TRIP</string>
-    <string name="borders">BORDERS CROSSED:</string>
+    <string name="borders">FRONTERAS CRUZADAS:</string>
     <string name="borders_">Slovenian border</string>
-    <string name="restrictions">RESTRICTIONS</string>
+    <string name="distancia">DISTANCIA:</string>
+    <string name="distancia_">1000 KM</string>
+    <string name="restrictions">RESTRICCIONES</string>
     <string name="restrictions_">PCR test...</string>
     <string-array name="countries">
         <item>Albania</item>
@@ -53,6 +56,6 @@
         <item>Suiza</item>
         <item>Ucrania</item>
     </string-array>
-    <string name="title_activity_maps">Map</string>
-    <string name="title_activity_ubicacion">Map</string>
+    <string name="title_activity_maps">Ruta de viaje</string>
+    <string name="title_activity_ubicacion">Clinicas cercanas</string>
 </resources>

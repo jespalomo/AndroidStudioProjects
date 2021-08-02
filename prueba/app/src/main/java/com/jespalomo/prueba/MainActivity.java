@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private String input1="", input2="", restricciones, restricciones1, restricciones2, nombre;
     AutoCompleteTextView c1,c2;
     TextView prueba;
+    Pais pais1 = new Pais();
+    Pais pais2 = new Pais();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,73 +47,60 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, countries);
         c2.setAdapter(adapter2);
 
-<<<<<<< Updated upstream
+
     }
-    //Metodo para descargar datos de la bdd y transferir los datos a la actividad del mapa
-    public void botonMapa(View view){
-        Intent next = new Intent(this, MapsActivity.class);
-        next.putExtra("city1", input1);
-        next.putExtra("latHorizontal1", latHorizontal1);
-        next.putExtra("latVertical1", latVertical1);
-        next.putExtra("city2", input2);
-        next.putExtra("latHorizontal2", latHorizontal2);
-        next.putExtra("latVertical2", latVertical2);
-        startActivity(next);
-=======
->>>>>>> Stashed changes
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
-    //Metodo para descargar datos de la bdd y transferir los datos a la actividad del mapa
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id= item.getItemId();
+
+        if(id == R.id.home){
+            Intent next = new Intent(this, MainActivity.class);
+            startActivity(next);
+            return true;
+        }return super.onOptionsItemSelected(item);
+    }
     public void confirma1(View view){
         input1 = c1.getText().toString();
-        consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input1+"");
-<<<<<<< Updated upstream
-        restricciones1=restricciones;
-=======
->>>>>>> Stashed changes
-        latVertical1=latVertical;
-        latHorizontal1=latHorizontal;
-        prueba.setText(input1);
+        if(!input1.isEmpty()){
+            consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input1+"",pais1);
+            Toast.makeText(getApplicationContext(),"Pais de origen: "+ input1,Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(getApplicationContext(),"Introduce pais de origen",Toast.LENGTH_SHORT).show();
+        }
     }
     public void confirma2(View view){
         input2 = c2.getText().toString();
-        consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input2+"");
-        restricciones2=restricciones;
-        latVertical2=latVertical;
-        latHorizontal2=latHorizontal;
-        prueba.setText(input2);
+        if(!input1.isEmpty()){
+        consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input2+"", pais2);
+        Toast.makeText(getApplicationContext(),"Pais de destino: "+ input2,Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(getApplicationContext(),"Introduce pais de destino",Toast.LENGTH_SHORT).show();
+        }
     }
     //Metodo para descargar datos de la bdd y transferir los datos a la actividad de detalles
     public void botonSpecs(View view){
-<<<<<<< Updated upstream
-
-            Intent next = new Intent(this, Specs.class);
-            next.putExtra("city1", input1);
-            //next.putExtra("id1", id1);
-            next.putExtra("restricciones1", restricciones1);
-            next.putExtra("city2", input2);
-            //next.putExtra("id2", id2);
-            next.putExtra("restricciones2", restricciones2);
-            startActivity(next);
-=======
         Intent next = new Intent(this, Specs.class);
-        next.putExtra("city1", input1);
-        next.putExtra("id1", id1);
-        next.putExtra("latVertical1", latVertical1);
-        next.putExtra("latHorizontal1", latHorizontal1);
-        next.putExtra("city2", input2);
-        next.putExtra("id2", id2);
-        next.putExtra("restricciones2", restricciones2);
-        next.putExtra("latVertical2", latVertical2);
-        next.putExtra("latHorizontal2", latHorizontal2);
+        next.putExtra("city1", pais1.getNombre());
+        next.putExtra("id1", pais1.getId());
+        next.putExtra("latVertical1", pais1.getLatVertical());
+        next.putExtra("latHorizontal1", pais1.getLatHorizontal());
+        next.putExtra("city2", pais2.getNombre());
+        next.putExtra("id2", pais2.getId());
+        next.putExtra("restricciones2", pais2.getRestricciones());
+        next.putExtra("latVertical2", pais2.getLatVertical());
+        next.putExtra("latHorizontal2", pais2.getLatHorizontal());
         startActivity(next);
->>>>>>> Stashed changes
     }
     public void botonUbi(View view){
         Intent next = new Intent(this, Ubicacion.class);
         startActivity(next);
     }
     //Metodo para hacer la consulta a la base de datos de mySQL
-    private void consulta(String URL){
+    private void consulta(String URL, Pais p){
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -116,11 +108,13 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
-                        id = jsonObject.getInt("id");
-                        nombre= jsonObject.getString("nombre");
-                        restricciones = jsonObject.getString("restricciones");
-                        latVertical = jsonObject.getDouble("latVertical");
-                        latHorizontal = jsonObject.getDouble("latHorizontal");
+                        p.setId(jsonObject.getInt("id"));
+                        p.setNombre(jsonObject.getString("nombre"));
+                        p.setRestricciones(jsonObject.getString("restricciones"));
+                        p.setLatVertical(jsonObject.getDouble("latVertical"));
+                        p.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
+                        //p.setLatVertClinica(jsonObject.getDouble("latVertClinica"));
+                        //p.setLatHorClinica(jsonObject.getDouble("latHorClinica"));
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
