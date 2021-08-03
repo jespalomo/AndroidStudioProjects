@@ -34,12 +34,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.*;
+
 public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Location l;
-    //private double latVertical,latHorizontal,latVertical1,latHorizontal1, suma=1000.0;
+    private int id, numClinicas;
+
+    private double latVertical,latHorizontal;
     //private String nombre, nombre1;
+
+    Clinica c = new Clinica();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,11 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getLocalizacion();
-        //buscaClinica(l.getLatitude(),l.getLongitude());
+        id = getIntent().getIntExtra("idPais",0);
+        numClinicas = getIntent().getIntExtra("numClinicas",0);
+        latVertical = getIntent().getDoubleExtra("latVertical", 0.00);
+        latHorizontal = getIntent().getDoubleExtra("latHorizontal", 0.00);
+
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -99,7 +108,8 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onLocationChanged(Location location) {
                 LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(miUbicacion).title("Ubicacion Actual"));
+                mMap.addMarker(new MarkerOptions().position(miUbicacion).title("Ubicacion actual"));
+                /*
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(miUbicacion)
@@ -108,6 +118,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                         .tilt(45)
                         .build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                */
             }
 
             @Override
@@ -126,9 +137,16 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             }
         };
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        buscaClinica(id,c,googleMap);
+        LatLng a = new LatLng(latVertical, latHorizontal);
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(a)
+                .zoom(5)
+                .build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
-    /*
-    private void consulta(String URL){
+
+    private void consulta(String URL, Clinica c){
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -136,9 +154,10 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
-                        latVertical = jsonObject.getDouble("latVertical");
-                        latHorizontal = jsonObject.getDouble("latHorizontal");
-                        nombre = jsonObject.getString("nombre");
+                        c.setId(jsonObject.getInt("id"));
+                        c.setLatVertical(jsonObject.getDouble("latVertical"));
+                        c.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
+                        c.setNombre(jsonObject.getString("nombre"));
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -154,17 +173,12 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
-    private void buscaClinica(double latV, double latH){
-        for(int i=0; i<41; i++){
-            consulta("http://192.168.0.44/dev/consultaubi.php?id="+i+"");
-            if((latV-latVertical)+(latH-latHorizontal)<suma){
-                suma=(latV-latVertical)+(latH-latHorizontal);
-                latVertical1=latVertical;
-                latHorizontal1=latHorizontal;
-                nombre1=nombre;
-            }
-        }
-        LatLng clinica = new LatLng(latVertical, latHorizontal1);
-        mMap.addMarker(new MarkerOptions().position(clinica).title(nombre1));
-    }*/
+    private void buscaClinica(int id, Clinica c, GoogleMap googleMap){
+        mMap = googleMap;
+        LatLng cli;
+        consulta("http://192.168.0.44/dev/consultaubi.php?idPais="+id+"", c);
+        Toast.makeText(getApplicationContext(), c.getNombre(), Toast.LENGTH_SHORT).show();
+        cli= new LatLng(c.getLatVertical(), c.getLatHorizontal());
+        mMap.addMarker(new MarkerOptions().position(cli).title(c.getNombre()));
+    }
 }

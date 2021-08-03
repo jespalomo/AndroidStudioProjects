@@ -2,6 +2,7 @@ package com.jespalomo.prueba;
 
 public class Pais {
     private int id;
+    private int numClinicas;
     private double latVertical;
     private double latHorizontal;
     private double latVertClinica;
@@ -66,5 +67,13 @@ public class Pais {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getNumClinicas() {
+        return numClinicas;
+    }
+
+    public void setNumClinicas(int numClinicas) {
+        this.numClinicas = numClinicas;
     }
 }

@@ -8,7 +8,7 @@
 
 
     <AutoCompleteTextView
-        android:id="@+id/city1"
+        android:id="@+id/pais"
         android:layout_width="246dp"
         android:layout_height="wrap_content"
         android:hint="@string/city1"
@@ -28,12 +28,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city1"
+        app:layout_constraintTop_toBottomOf="@+id/pais"
         app:layout_constraintVertical_bias="0.229" />
 
 
     <Button
-        android:id="@+id/botonSpecs"
+        android:id="@+id/avanzar"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:background="@drawable/botonredondo"
@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.359" />
 
     <Button
-        android:id="@+id/confirma1"
+        android:id="@+id/confirma"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
@@ -86,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonSpecs"
+        app:layout_constraintTop_toBottomOf="@+id/avanzar"
         app:layout_constraintVertical_bias="0.464" />
 
     <TextView
@@ -108,7 +108,7 @@
         android:text="@string/city1"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/city1"
+        app:layout_constraintBottom_toTopOf="@+id/pais"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

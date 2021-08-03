@@ -29,7 +29,7 @@ public class Specs extends AppCompatActivity {
         latHorizontal2 = getIntent().getDoubleExtra("latHorizontal2", 0.00);
         dis = haversine(latHorizontal1,latVertical1,latHorizontal2,latVertical2);
 
-        trip = findViewById(R.id.trip);
+        trip = findViewById(R.id.pregunta);
         distancia= findViewById(R.id.distancia_);
         restricciones_ = findViewById(R.id.restrictions_);
         trip.setText("Viaje desde " + city1 + " hasta " + city2);

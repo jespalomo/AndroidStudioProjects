@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="0.099" />
 
     <TextView
-        android:id="@+id/trip"
+        android:id="@+id/pregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -101,7 +101,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trip"
+        app:layout_constraintTop_toBottomOf="@+id/pregunta"
         app:layout_constraintVertical_bias="0.042" />
 
     <Button
