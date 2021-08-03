@@ -10,9 +10,10 @@
         android:id="@+id/borders_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/borders_"
-        android:textSize="16sp"
+        android:fontFamily="@font/caveat_normal"
         android:gravity="center"
+        android:text="@string/borders_"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,51 +24,53 @@
         android:id="@+id/distancia_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/caveat_normal"
         android:gravity="center"
         android:text="@string/distancia_"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/distancia"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.031" />
 
     <TextView
         android:id="@+id/restrictions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/caveat_normal"
         android:gravity="center"
         android:text="@string/restrictions"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borders"
-        app:layout_constraintVertical_bias="0.199" />
+        app:layout_constraintVertical_bias="0.26" />
 
     <TextView
         android:id="@+id/restrictions_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/caveat_normal"
         android:gravity="center"
         android:text="@string/restrictions_"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restrictions"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.063" />
 
     <TextView
         android:id="@+id/pregunta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="380dp"
+        android:layout_height="54dp"
+        android:fontFamily="@font/caveat_normal"
         android:gravity="center"
         android:text="@string/trip"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,44 +82,48 @@
         android:id="@+id/borders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/caveat_normal"
         android:gravity="center"
         android:text="@string/borders"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/distancia"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintVertical_bias="0.157" />
 
     <TextView
         android:id="@+id/distancia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="179dp"
+        android:layout_height="46dp"
         android:layout_marginTop="36dp"
+        android:fontFamily="@font/caveat_normal"
         android:gravity="center"
         android:text="@string/distancia"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pregunta"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
 
     <Button
         android:id="@+id/botonMapa"
         android:layout_width="126dp"
         android:layout_height="51dp"
         android:background="@drawable/botonredondo"
+        android:fontFamily="@font/pm_normal"
         android:onClick="botonMapa"
         android:text="@string/botonmapa"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.807" />
+        app:layout_constraintVertical_bias="0.851" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,5 @@
 package com.jespalomo.prueba;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +11,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,11 +34,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.*;
-
 public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private ActivityUbicacionBinding binding;
     private int id, numClinicas;
 
     private double latVertical,latHorizontal;
@@ -109,7 +108,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             public void onLocationChanged(Location location) {
                 LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(miUbicacion).title("Ubicacion actual"));
-                /*
+
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(miUbicacion)
@@ -118,7 +117,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                         .tilt(45)
                         .build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                */
+
             }
 
             @Override
@@ -138,12 +137,14 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         };
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         buscaClinica(id,c,googleMap);
+        /*
         LatLng a = new LatLng(latVertical, latHorizontal);
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(a)
                 .zoom(5)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        */
     }
 
     private void consulta(String URL, Clinica c){
@@ -177,7 +178,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         mMap = googleMap;
         LatLng cli;
         consulta("http://192.168.0.44/dev/consultaubi.php?idPais="+id+"", c);
-        Toast.makeText(getApplicationContext(), c.getNombre(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), c.getNombre(), Toast.LENGTH_SHORT).show();
         cli= new LatLng(c.getLatVertical(), c.getLatHorizontal());
         mMap.addMarker(new MarkerOptions().position(cli).title(c.getNombre()));
     }
