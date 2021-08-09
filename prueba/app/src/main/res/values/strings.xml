@@ -4,6 +4,7 @@
     <string name="city2">PAIS DE DESTINO</string>
     <string name="botonmapa">VER EN EL MAPA</string>
     <string name="botonspecs">VER DETALLES DEL VIAJE</string>
+    <string name="confirmar">CONFIRMAR SELECCION</string>
     <string name="botonubi">CLINICAS EN MI ZONA</string>
     <string name="home">Home</string>
     <string name="trip">TRIP</string>
@@ -15,6 +16,13 @@
     <string name="distancia_">1000 KM</string>
     <string name="restrictions">RESTRICCIONES</string>
     <string name="restrictions_">PCR test...</string>
+    <string name="vuelos">VUELOS DISPONIBLES</string>
+    <string name="fecha">FECHA</string>
+    <string name="duracion">DURACION</string>
+    <string name="ruta">RUTA</string>
+    <string name="tipo">TIPO</string>
+    <string name="escala">ESCALA</string>
+    <string name="PRECIO">PRECIO</string>
     <string-array name="countries">
         <item>Albania</item>
         <item>Alemania</item>

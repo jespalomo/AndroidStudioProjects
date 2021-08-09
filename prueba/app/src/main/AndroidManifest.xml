@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Prueba"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CompruebaUbicacion"></activity>
+        <activity android:name=".ListaVuelos"></activity>
+        <activity android:name=".ListaEleccion" />
+        <activity android:name=".CompruebaUbicacion" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

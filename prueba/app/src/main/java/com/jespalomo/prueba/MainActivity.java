@@ -61,7 +61,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }return super.onOptionsItemSelected(item);
     }
-    public void confirma1(View view){
+    public void confirma(View view){
+        //confirma1();
+        //confirma2();
+        Intent next = new Intent(this, ListaVuelos.class);
+        startActivity(next);
+        //botonSpecs();
+    }
+    public void confirma1(){
         input1 = c1.getText().toString();
         if(!input1.isEmpty()){
             consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input1+"",pais1);
@@ -70,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Introduce pais de origen",Toast.LENGTH_SHORT).show();
         }
     }
-    public void confirma2(View view){
+    public void confirma2(){
         input2 = c2.getText().toString();
-        if(!input1.isEmpty()){
+        if(!input2.isEmpty()){
         consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input2+"", pais2);
         Toast.makeText(getApplicationContext(),"Pais de destino: "+ input2,Toast.LENGTH_SHORT).show();
         }else {

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,8 @@ public class MapsActivity extends AppCompatActivity implements
     private ActivityMapsBinding binding;
     private String city1, city2;
     private double latVertical1, latHorizontal1, latVertical2, latHorizontal2;
+    private static final int COLOR_BLACK_ARGB = 0xff000333;
+    private static final int POLYLINE_STROKE_WIDTH_PX = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,20 +93,20 @@ public class MapsActivity extends AppCompatActivity implements
                         city2_));
 
         polyline1.setTag("Ruta mas corta");
+        //stylePolyline(polyline1);
+        polyline1.setColor(COLOR_BLACK_ARGB);
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(city1_)
                 .zoom(7)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
-    private static final int COLOR_BLACK_ARGB = 0xff000000;
-    private static final int POLYLINE_STROKE_WIDTH_PX = 12;
+
 
     /**
      * Styles the polyline, based on type.
      * @param polyline The polyline object that needs styling.
      */
-    /*
     private void stylePolyline(Polyline polyline) {
         String type = "";
         // Get the data object stored with the polyline.
@@ -128,5 +131,4 @@ public class MapsActivity extends AppCompatActivity implements
         polyline.setColor(COLOR_BLACK_ARGB);
         polyline.setJointType(JointType.ROUND);
     }
-    */
 }

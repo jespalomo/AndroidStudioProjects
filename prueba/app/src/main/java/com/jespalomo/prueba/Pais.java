@@ -11,7 +11,14 @@ public class Pais {
     private String nombre;
 
     public Pais(){
-
+        id=0;
+        numClinicas=0;
+        latVertical=0.0;
+        latHorizontal=0.0;
+        latVertClinica=0.0;
+        latHorClinica=0.0;
+        restricciones="";
+        nombre="";
     }
     public int getId() {
         return id;
