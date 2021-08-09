@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -27,10 +28,21 @@ public class ListaVuelos extends AppCompatActivity {
         elements.add(new ListElement("MAD-VIE", "DIRECTO - 2h 30min", "102€"));
         elements.add(new ListElement("BCN-LJU", "DIRECTO - 1h 55min", "113€"));
 
-        ListAdapter listAdapter = new ListAdapter(elements, this);
+        ListAdapter listAdapter = new ListAdapter(elements, this, new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(ListElement item) {
+                moveToDescription(item);
+            }
+        });
         RecyclerView recyclerView = findViewById(R.id.lista);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(listAdapter);
+    }
+
+    public void moveToDescription(ListElement item){
+        Intent next = new Intent(this, Specs.class);
+        next.putExtra("ListElement", item);
+        startActivity(next);
     }
 }

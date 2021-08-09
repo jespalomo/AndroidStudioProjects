@@ -1,6 +1,8 @@
 package com.jespalomo.prueba;
 
-public class ListElement {
+import java.io.Serializable;
+
+public class ListElement implements Serializable {
     public String ruta;
     public String duracion;
     public String tipo;

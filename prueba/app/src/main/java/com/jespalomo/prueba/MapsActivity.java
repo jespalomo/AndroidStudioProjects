@@ -29,8 +29,8 @@ public class MapsActivity extends AppCompatActivity implements
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    private String city1, city2;
-    private double latVertical1, latHorizontal1, latVertical2, latHorizontal2;
+    Pais pais1;
+    Pais pais2;
     private static final int COLOR_BLACK_ARGB = 0xff000333;
     private static final int POLYLINE_STROKE_WIDTH_PX = 12;
 
@@ -40,18 +40,14 @@ public class MapsActivity extends AppCompatActivity implements
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        pais1 = (Pais) getIntent().getSerializableExtra("Pais1");
+        pais2 = (Pais) getIntent().getSerializableExtra("Pais2");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        city1 = getIntent().getStringExtra("city1");
-        latVertical1 = getIntent().getDoubleExtra("latVertical1", 0.00);
-        latHorizontal1 = getIntent().getDoubleExtra("latHorizontal1", 0.00);
-        city2 = getIntent().getStringExtra("city2");
-        latVertical2 = getIntent().getDoubleExtra("latVertical2", 0.00);
-        latHorizontal2 = getIntent().getDoubleExtra("latHorizontal2", 0.00);
+
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -82,10 +78,10 @@ public class MapsActivity extends AppCompatActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng city1_ = new LatLng(latVertical1, latHorizontal1);
-        LatLng city2_ = new LatLng(latVertical2, latHorizontal2);
-        mMap.addMarker(new MarkerOptions().position(city1_).title("Marker in " + city1));
-        mMap.addMarker(new MarkerOptions().position(city2_).title("Marker in " + city2));
+        LatLng city1_ = new LatLng(pais1.getLatVertical(), pais1.getLatHorizontal());
+        LatLng city2_ = new LatLng(pais2.getLatVertical(), pais2.getLatHorizontal());
+        mMap.addMarker(new MarkerOptions().position(city1_).title("Marker in " + pais1.getNombre()));
+        mMap.addMarker(new MarkerOptions().position(city2_).title("Marker in " + pais2.getNombre()));
         Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(

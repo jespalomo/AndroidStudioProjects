@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
         }return super.onOptionsItemSelected(item);
     }
     public void confirma(View view){
-        //confirma1();
-        //confirma2();
-        Intent next = new Intent(this, ListaVuelos.class);
-        startActivity(next);
-        //botonSpecs();
+        confirma1();
+        confirma2();
+        //Intent next = new Intent(this, ListaVuelos.class);
+        //startActivity(next);
+        //botonSpecs(pais1, pais2);
     }
     public void confirma1(){
         input1 = c1.getText().toString();
@@ -90,15 +90,8 @@ public class MainActivity extends AppCompatActivity {
     public void botonSpecs(View view){
         if(!pais1.getNombre().isEmpty() && !pais2.getNombre().isEmpty() ){
             Intent next = new Intent(this, Specs.class);
-            next.putExtra("city1", pais1.getNombre());
-            next.putExtra("id1", pais1.getId());
-            next.putExtra("latVertical1", pais1.getLatVertical());
-            next.putExtra("latHorizontal1", pais1.getLatHorizontal());
-            next.putExtra("city2", pais2.getNombre());
-            next.putExtra("id2", pais2.getId());
-            next.putExtra("restricciones2", pais2.getRestricciones());
-            next.putExtra("latVertical2", pais2.getLatVertical());
-            next.putExtra("latHorizontal2", pais2.getLatHorizontal());
+            next.putExtra("Pais1", pais1);
+            next.putExtra("Pais2", pais2);
             startActivity(next);
         }else if(pais1.getNombre().isEmpty()){
             Toast.makeText(getApplicationContext(),"Confirma pais de origen",Toast.LENGTH_SHORT).show();

@@ -10,31 +10,25 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Specs extends AppCompatActivity {
-    private String city1, city2, restricciones1, restricciones2;
-    private int id1, id2, dis;
-    private double latVertical1,latHorizontal1,latVertical2,latHorizontal2;
+    private int dis;
     TextView trip, restricciones_, distancia;
+    Pais pais1;
+    Pais pais2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specs);
-        city1 = getIntent().getStringExtra("city1");
-        id1 = getIntent().getIntExtra("id1",0);
-        latVertical1 = getIntent().getDoubleExtra("latVertical1", 0.00);
-        latHorizontal1 = getIntent().getDoubleExtra("latHorizontal1", 0.00);
-        city2 = getIntent().getStringExtra("city2");
-        id2 = getIntent().getIntExtra("id2",0);
-        restricciones2 = getIntent().getStringExtra("restricciones2");
-        latVertical2 = getIntent().getDoubleExtra("latVertical2", 0.00);
-        latHorizontal2 = getIntent().getDoubleExtra("latHorizontal2", 0.00);
-        dis = haversine(latHorizontal1,latVertical1,latHorizontal2,latVertical2);
+        ListElement element = (ListElement) getIntent().getSerializableExtra("ListElement");
+        pais1 = (Pais) getIntent().getSerializableExtra("Pais1");
+        pais2 = (Pais) getIntent().getSerializableExtra("Pais2");
 
+        dis = haversine(pais1.getLatHorizontal(), pais1.getLatVertical(), pais2.getLatHorizontal(), pais2.getLatVertical());
         trip = findViewById(R.id.pregunta);
         distancia= findViewById(R.id.distancia_);
         restricciones_ = findViewById(R.id.restrictions_);
-        trip.setText("Viaje desde " + city1 + " hasta " + city2);
+        trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + pais2.getNombre());
         distancia.setText(Integer.toString(dis)+ " KM");
-        restricciones_.setText("Frontera de "+city2+":\n "+restricciones2);
+        restricciones_.setText("Frontera de "+pais2.getNombre()+":\n "+pais2.getRestricciones());
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -76,12 +70,8 @@ public class Specs extends AppCompatActivity {
     }
     public void botonMapa(View view){
         Intent next = new Intent(this, MapsActivity.class);
-        next.putExtra("city1", city1);
-        next.putExtra("latHorizontal1", latHorizontal1);
-        next.putExtra("latVertical1", latVertical1);
-        next.putExtra("city2", city2);
-        next.putExtra("latHorizontal2", latHorizontal2);
-        next.putExtra("latVertical2", latVertical2);
+        next.putExtra("Pais1", pais1);
+        next.putExtra("Pais2", pais2);
         startActivity(next);
     }
 }
