@@ -22,12 +22,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
-    int id,id1,id2;
-    double latVertical, latHorizontal, latVertical1, latHorizontal1, latVertical2, latHorizontal2;
-    private String input1="", input2="", restricciones, restricciones1, restricciones2, nombre;
+    List<Aeropuerto> aeropuertos1;
+    List<Aeropuerto> aeropuertos2;
+    private String input1="", input2="";
     AutoCompleteTextView c1,c2;
-    TextView prueba;
     Pais pais1 = new Pais();
     Pais pais2 = new Pais();
 
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     public void confirma(View view){
         confirma1();
         confirma2();
+        //consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos.php?pais="+pais1.getId()+"");
+        confirmaAeropuerto();
         //Intent next = new Intent(this, ListaVuelos.class);
         //startActivity(next);
         //botonSpecs(pais1, pais2);
@@ -86,12 +91,21 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Introduce pais de destino",Toast.LENGTH_SHORT).show();
         }
     }
+    public void confirmaAeropuerto(){
+        aeropuertos1=new ArrayList<>();
+        aeropuertos2=new ArrayList<>();
+        aeropuertos1.add(new Aeropuerto(1, "Barajas", 40.46857008441172,-3.56968626540711, 14, "MAD"));
+        aeropuertos1.add(new Aeropuerto(2, "El Prat", 41.29757394712847,2.08327264002820, 14, "BCN"));
+        aeropuertos2.add(new Aeropuerto(3, "Ljubljana Airport", 46.06109328227125,14.50634783348572, 1, "LJU"));
+    }
     //Metodo para descargar datos de la bdd y transferir los datos a la actividad de detalles
     public void botonSpecs(View view){
         if(!pais1.getNombre().isEmpty() && !pais2.getNombre().isEmpty() ){
-            Intent next = new Intent(this, Specs.class);
+            Intent next = new Intent(this, ListaVuelos.class);
             next.putExtra("Pais1", pais1);
             next.putExtra("Pais2", pais2);
+            next.putExtra("Aeropuertos1", (Serializable) aeropuertos1);
+            next.putExtra("Aeropuertos2", (Serializable) aeropuertos2);
             startActivity(next);
         }else if(pais1.getNombre().isEmpty()){
             Toast.makeText(getApplicationContext(),"Confirma pais de origen",Toast.LENGTH_SHORT).show();
@@ -134,5 +148,32 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
-
+    private void consultaAeropuertos(String URL){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                aeropuertos1=new ArrayList<>();
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        aeropuertos1.add(new Aeropuerto(jsonObject.getInt("id"),jsonObject.getString("nombre"),
+                                jsonObject.getDouble("latVertical"), jsonObject.getDouble("latHorizontal"),
+                                jsonObject.getInt("pais"), jsonObject.getString("codigo")));
+                        Toast.makeText(getApplicationContext(),aeropuertos1.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
 }

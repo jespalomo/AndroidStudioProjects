@@ -31,6 +31,7 @@ public class MapsActivity extends AppCompatActivity implements
     private ActivityMapsBinding binding;
     Pais pais1;
     Pais pais2;
+    ListElement vuelo;
     private static final int COLOR_BLACK_ARGB = 0xff000333;
     private static final int POLYLINE_STROKE_WIDTH_PX = 12;
 
@@ -42,6 +43,7 @@ public class MapsActivity extends AppCompatActivity implements
         setContentView(binding.getRoot());
         pais1 = (Pais) getIntent().getSerializableExtra("Pais1");
         pais2 = (Pais) getIntent().getSerializableExtra("Pais2");
+        vuelo = (ListElement) getIntent().getSerializableExtra("Vuelo");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -78,10 +80,10 @@ public class MapsActivity extends AppCompatActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng city1_ = new LatLng(pais1.getLatVertical(), pais1.getLatHorizontal());
-        LatLng city2_ = new LatLng(pais2.getLatVertical(), pais2.getLatHorizontal());
-        mMap.addMarker(new MarkerOptions().position(city1_).title("Marker in " + pais1.getNombre()));
-        mMap.addMarker(new MarkerOptions().position(city2_).title("Marker in " + pais2.getNombre()));
+        LatLng city1_ = new LatLng(vuelo.getLatVertical1(), vuelo.getLatHorizontal1());
+        LatLng city2_ = new LatLng(vuelo.getLatVertical2(), vuelo.getLatHorizontal2());
+        mMap.addMarker(new MarkerOptions().position(city1_).title(vuelo.getNombre1()));
+        mMap.addMarker(new MarkerOptions().position(city2_).title(vuelo.getNombre2()));
         Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(

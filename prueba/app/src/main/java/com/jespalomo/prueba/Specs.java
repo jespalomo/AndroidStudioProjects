@@ -14,6 +14,7 @@ public class Specs extends AppCompatActivity {
     TextView trip, restricciones_, distancia;
     Pais pais1;
     Pais pais2;
+    ListElement vuelo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +22,13 @@ public class Specs extends AppCompatActivity {
         ListElement element = (ListElement) getIntent().getSerializableExtra("ListElement");
         pais1 = (Pais) getIntent().getSerializableExtra("Pais1");
         pais2 = (Pais) getIntent().getSerializableExtra("Pais2");
+        vuelo = (ListElement) getIntent().getSerializableExtra("Vuelo");
 
-        dis = haversine(pais1.getLatHorizontal(), pais1.getLatVertical(), pais2.getLatHorizontal(), pais2.getLatVertical());
         trip = findViewById(R.id.pregunta);
         distancia= findViewById(R.id.distancia_);
         restricciones_ = findViewById(R.id.restrictions_);
-        trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + pais2.getNombre());
-        distancia.setText(Integer.toString(dis)+ " KM");
+        trip.setText("Viaje desde " + vuelo.getRuta() + " hasta " + pais2.getNombre());
+        distancia.setText(vuelo.getDuracion());
         restricciones_.setText("Frontera de "+pais2.getNombre()+":\n "+pais2.getRestricciones());
     }
     public boolean onCreateOptionsMenu(Menu menu){
@@ -72,6 +73,7 @@ public class Specs extends AppCompatActivity {
         Intent next = new Intent(this, MapsActivity.class);
         next.putExtra("Pais1", pais1);
         next.putExtra("Pais2", pais2);
+        next.putExtra("Vuelo", vuelo);
         startActivity(next);
     }
 }
