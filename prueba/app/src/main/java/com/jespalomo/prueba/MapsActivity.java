@@ -26,7 +26,7 @@ import com.jespalomo.prueba.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends AppCompatActivity implements
         OnMapReadyCallback{
-
+    private static final int colores []= {0xff3be155,0xfff5a905,0xfff50505};
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     Pais pais1;
@@ -88,11 +88,11 @@ public class MapsActivity extends AppCompatActivity implements
                 .clickable(true)
                 .add(
                         city1_,
-                        city2_));
-
+                        city2_)
+                .color(colores[pais2.getAlerta()])
+                );
         polyline1.setTag("Ruta mas corta");
-        //stylePolyline(polyline1);
-        polyline1.setColor(COLOR_BLACK_ARGB);
+
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(city1_)
                 .zoom(7)
@@ -105,28 +105,5 @@ public class MapsActivity extends AppCompatActivity implements
      * Styles the polyline, based on type.
      * @param polyline The polyline object that needs styling.
      */
-    private void stylePolyline(Polyline polyline) {
-        String type = "";
-        // Get the data object stored with the polyline.
-        if (polyline.getTag() != null) {
-            type = polyline.getTag().toString();
-        }
-        switch (type) {
-            // If no type is given, allow the API to use the default.
-            case "A":
-                // Use a custom bitmap as the cap at the start of the line.
-                polyline.setStartCap(
-                        new CustomCap(
-                                BitmapDescriptorFactory.fromResource(R.drawable.ic_arrow), 10));
-                break;
-            case "B":
-                // Use a round cap at the start of the line.
-                polyline.setStartCap(new RoundCap());
-                break;
-        }
-        polyline.setEndCap(new RoundCap());
-        polyline.setWidth(POLYLINE_STROKE_WIDTH_PX);
-        polyline.setColor(COLOR_BLACK_ARGB);
-        polyline.setJointType(JointType.ROUND);
-    }
+
 }

@@ -7,16 +7,20 @@ public class Aeropuerto implements Serializable {
     public String nombre;
     public double latVertical;
     public double latHorizontal;
-    public int pais;
+    public String pais;
     public String codigo;
 
-    public Aeropuerto(int id, String nombre, double latVertical, double latHorizontal, int pais, String codigo) {
+    public Aeropuerto(int id, String nombre, double latVertical, double latHorizontal, String pais, String codigo) {
         this.id = id;
         this.nombre = nombre;
         this.latVertical = latVertical;
         this.latHorizontal = latHorizontal;
         this.pais = pais;
         this.codigo = codigo;
+    }
+
+    public Aeropuerto() {
+
     }
 
     public int getId() {
@@ -51,11 +55,11 @@ public class Aeropuerto implements Serializable {
         this.latHorizontal = latHorizontal;
     }
 
-    public int getPais() {
+    public String getPais() {
         return pais;
     }
 
-    public void setPais(int pais) {
+    public void setPais(String pais) {
         this.pais = pais;
     }
 

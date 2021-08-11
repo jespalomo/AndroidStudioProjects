@@ -5,10 +5,13 @@
     <string name="botonmapa">VER EN EL MAPA</string>
     <string name="botonspecs">VER DETALLES DEL VIAJE</string>
     <string name="confirmar">CONFIRMAR SELECCION</string>
-    <string name="botonubi">CLINICAS EN MI ZONA</string>
+    <string name="botonubi">CLÍNICAS EN MI ZONA</string>
+    <string name="botonmain">PLANEAR UN VIAJE</string>
     <string name="home">Home</string>
     <string name="trip">TRIP</string>
-    <string name="pregunta">¿EN QUE PAIS TE ENCUENTRAS?</string>
+    <string name="entrada">COVID TRAVELLER</string>
+    <string name="entrada_">¿QUÉ QUIERES HACER?</string>
+    <string name="pregunta">¿EN QUÉ PAIS TE ENCUENTRAS?</string>
     <string name="pregunta_">INGRESA UN PAIS</string>
     <string name="borders">FRONTERAS CRUZADAS:</string>
     <string name="borders_">Frontera de Eslovenia</string>
@@ -57,7 +60,7 @@
         <item>Polonia</item>
         <item>Portugal</item>
         <item>Republica Checa</item>
-        <item>Rumania</item>
+        <item>Rumanía</item>
         <item>Rusia</item>
         <item>San Marino</item>
         <item>Serbia</item>
@@ -67,5 +70,6 @@
         <item>Ucrania</item>
     </string-array>
     <string name="title_activity_maps">Ruta de viaje</string>
-    <string name="title_activity_ubicacion">Clinicas cercanas</string>
+    <string name="title_activity_ubicacion">Clínicas cercanas</string>
+    <string name="title_activity_main">Planear viaje</string>
 </resources>

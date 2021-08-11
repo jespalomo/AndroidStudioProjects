@@ -27,7 +27,7 @@ public class Specs extends AppCompatActivity {
         trip = findViewById(R.id.pregunta);
         distancia= findViewById(R.id.distancia_);
         restricciones_ = findViewById(R.id.restrictions_);
-        trip.setText("Viaje desde " + vuelo.getRuta() + " hasta " + pais2.getNombre());
+        trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + pais2.getNombre());
         distancia.setText(vuelo.getDuracion());
         restricciones_.setText("Frontera de "+pais2.getNombre()+":\n "+pais2.getRestricciones());
     }

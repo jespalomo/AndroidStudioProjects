@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView c1,c2;
     Pais pais1 = new Pais();
     Pais pais2 = new Pais();
-
+    RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,11 +67,8 @@ public class MainActivity extends AppCompatActivity {
     public void confirma(View view){
         confirma1();
         confirma2();
-        //consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos.php?pais="+pais1.getId()+"");
         confirmaAeropuerto();
-        //Intent next = new Intent(this, ListaVuelos.class);
-        //startActivity(next);
-        //botonSpecs(pais1, pais2);
+
     }
     public void confirma1(){
         input1 = c1.getText().toString();
@@ -91,12 +88,24 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Introduce pais de destino",Toast.LENGTH_SHORT).show();
         }
     }
+    public void confirmaAeropuerto1(List<Aeropuerto> aeropuertos){
+        input1 = c1.getText().toString();
+        if(!input1.isEmpty()) {
+            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos.php?pais=" + input1 + "", aeropuertos);
+        }
+    }
+    public void confirmaAeropuerto2(List<Aeropuerto> aeropuertos){
+        input2 = c2.getText().toString();
+        if(!input2.isEmpty()){
+            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos.php?pais="+input2+ "", aeropuertos);
+        }
+    }
     public void confirmaAeropuerto(){
         aeropuertos1=new ArrayList<>();
         aeropuertos2=new ArrayList<>();
-        aeropuertos1.add(new Aeropuerto(1, "Barajas", 40.46857008441172,-3.56968626540711, 14, "MAD"));
-        aeropuertos1.add(new Aeropuerto(2, "El Prat", 41.29757394712847,2.08327264002820, 14, "BCN"));
-        aeropuertos2.add(new Aeropuerto(3, "Ljubljana Airport", 46.06109328227125,14.50634783348572, 1, "LJU"));
+
+        confirmaAeropuerto1(aeropuertos1);
+        confirmaAeropuerto2(aeropuertos2);
     }
     //Metodo para descargar datos de la bdd y transferir los datos a la actividad de detalles
     public void botonSpecs(View view){
@@ -113,10 +122,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Confirma pais de destino",Toast.LENGTH_SHORT).show();
         }
     }
-    public void botonUbi(View view){
-        Intent next = new Intent(this, CompruebaUbicacion.class);
-        startActivity(next);
-    }
     //Metodo para hacer la consulta a la base de datos de mySQL
     private void consulta(String URL, Pais p){
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
@@ -132,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
                         p.setLatVertical(jsonObject.getDouble("latVertical"));
                         p.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
                         //p.setLatVertClinica(jsonObject.getDouble("latVertClinica"));
-                        //p.setLatHorClinica(jsonObject.getDouble("latHorClinica"));
+                       // p.setLatHorClinica(jsonObject.getDouble("latHorClinica"));
+                        p.setAlerta(jsonObject.getInt("alerta"));
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -145,22 +151,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         );
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
-    private void consultaAeropuertos(String URL){
+    private void consultaAeropuertos(String URL, List<Aeropuerto> aeropuertos){
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 JSONObject jsonObject = null;
-                aeropuertos1=new ArrayList<>();
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        jsonObject = response.getJSONObject(i);
-                        aeropuertos1.add(new Aeropuerto(jsonObject.getInt("id"),jsonObject.getString("nombre"),
+                       jsonObject = response.getJSONObject(i);
+                        aeropuertos.add(new Aeropuerto(jsonObject.getInt("id"),jsonObject.getString("nombre"),
                                 jsonObject.getDouble("latVertical"), jsonObject.getDouble("latHorizontal"),
-                                jsonObject.getInt("pais"), jsonObject.getString("codigo")));
-                        Toast.makeText(getApplicationContext(),aeropuertos1.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
+                                jsonObject.getString("pais"),jsonObject.getString("codigo")));
+                        Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
+
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -173,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         );
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
 }

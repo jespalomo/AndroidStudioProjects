@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,18 +19,35 @@ public class ListaVuelos extends AppCompatActivity {
     List<Aeropuerto> aeropuertos2;
     Pais pais1;
     Pais pais2;
-    private int dis, precio;
+    Aeropuerto aeropuerto1;
+    Aeropuerto aeropuerto2;
+    private int dis=0, precio=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_vuelos);
         pais1 = (Pais) getIntent().getSerializableExtra("Pais1");
         pais2 = (Pais) getIntent().getSerializableExtra("Pais2");
+        //aeropuerto1 = (Aeropuerto) getIntent().getSerializableExtra("Aeropuerto1");
+        //aeropuerto2 = (Aeropuerto) getIntent().getSerializableExtra("Aeropuerto2");
         aeropuertos1 = (List<Aeropuerto>) getIntent().getSerializableExtra("Aeropuertos1");
         aeropuertos2 = (List<Aeropuerto>) getIntent().getSerializableExtra("Aeropuertos2");
         init();
     }
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id= item.getItemId();
+
+        if(id == R.id.home){
+            Intent next = new Intent(this, MainActivity.class);
+            startActivity(next);
+            return true;
+        }return super.onOptionsItemSelected(item);
+    }
     public void init(){
         elements = new ArrayList<>();
         for(int i=0; i<aeropuertos1.size(); i++){
@@ -42,7 +61,13 @@ public class ListaVuelos extends AppCompatActivity {
                         aeropuertos1.get(i).getLatHorizontal(),aeropuertos2.get(j).getLatHorizontal()));
             }
         }
-        //elements.add(new ListElement("MAD-LJU", "ESCALAS - 5h 15min", "77€"));
+        //dis = haversine(aeropuerto1.getLatHorizontal(), aeropuerto1.getLatVertical(),
+          //      aeropuerto2.getLatHorizontal(), aeropuerto2.getLatVertical());
+       // precio=Math.round(dis/3);
+       // elements.add(new ListElement(aeropuerto1.getCodigo()+" - "+aeropuerto2.getCodigo(), Integer.toString(dis)+" KM",
+                //recio+ " €", aeropuerto1.getNombre(),aeropuerto2.getNombre(),
+                //aeropuerto1.getLatVertical(), aeropuerto2.getLatVertical(),
+                //aeropuerto1.getLatHorizontal(),aeropuerto2.getLatHorizontal()));
         //elements.add(new ListElement("MAD-VIE", "DIRECTO - 2h 30min", "102€"));
         //elements.add(new ListElement("BCN-LJU", "DIRECTO - 1h 55min", "113€"));
 

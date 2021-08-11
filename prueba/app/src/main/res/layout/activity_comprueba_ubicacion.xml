@@ -8,13 +8,12 @@
 
     <TextView
         android:id="@+id/pregunta"
-        android:layout_width="326dp"
-        android:layout_height="34dp"
-        android:fontFamily="@font/caveat_normal"
+        android:layout_width="379dp"
+        android:layout_height="82dp"
+        android:fontFamily="@font/oswald_medium"
         android:gravity="center"
         android:text="@string/pregunta"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +25,7 @@
         android:layout_width="246dp"
         android:layout_height="wrap_content"
         android:hint="@string/pregunta_"
-        android:fontFamily="@font/caveat_normal"
+        android:fontFamily="@font/oswald_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -36,13 +35,13 @@
 
     <Button
         android:id="@+id/avanzar"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
         android:background="@drawable/botonredondo"
-        android:fontFamily="@font/pm_normal"
+        android:fontFamily="@font/oswald_medium"
         android:onClick="botonUbi"
         android:text="@string/botonubi"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -51,7 +50,7 @@
         app:layout_constraintVertical_bias="0.383" />
 
     <Button
-        android:id="@+id/confirma"
+        android:id="@+id/confirmaAeropuertos"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="80dp"
