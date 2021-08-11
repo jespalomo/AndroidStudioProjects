@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         int id= item.getItemId();
 
         if(id == R.id.home){
-            Intent next = new Intent(this, MainActivity.class);
+            Intent next = new Intent(this, Seleccion.class);
             startActivity(next);
             return true;
         }return super.onOptionsItemSelected(item);
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                         aeropuertos.add(new Aeropuerto(jsonObject.getInt("id"),jsonObject.getString("nombre"),
                                 jsonObject.getDouble("latVertical"), jsonObject.getDouble("latHorizontal"),
                                 jsonObject.getString("pais"),jsonObject.getString("codigo")));
-                        Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

@@ -40,7 +40,7 @@ public class Specs extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            Intent next = new Intent(this, MainActivity.class);
+            Intent next = new Intent(this, Seleccion.class);
             startActivity(next);
             return true;
         }
