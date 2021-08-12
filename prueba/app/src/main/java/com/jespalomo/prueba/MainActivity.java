@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
@@ -26,9 +27,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    List<Aeropuerto> aeropuertos1;
-    List<Aeropuerto> aeropuertos2;
+public class MainActivity extends AppCompatActivity{
+    List<Aeropuerto> aeropuertos1=new ArrayList<>();
+    List<Aeropuerto> aeropuertos2=new ArrayList<>();
     private String input1="", input2="";
     AutoCompleteTextView c1,c2;
     Pais pais1 = new Pais();
@@ -47,8 +48,20 @@ public class MainActivity extends AppCompatActivity {
         c2 = (AutoCompleteTextView)findViewById(R.id.city2);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, countries);
         c2.setAdapter(adapter2);
-
-
+        c1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                confirma1();
+                confirmaAeropuerto1(aeropuertos1);
+            }
+        });
+        c2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                confirma2();
+                confirmaAeropuerto2(aeropuertos2);
+            }
+        });
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -64,12 +77,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }return super.onOptionsItemSelected(item);
     }
-    public void confirma(View view){
-        confirma1();
-        confirma2();
-        confirmaAeropuerto();
 
-    }
     public void confirma1(){
         input1 = c1.getText().toString();
         if(!input1.isEmpty()){
@@ -101,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void confirmaAeropuerto(){
-        aeropuertos1=new ArrayList<>();
-        aeropuertos2=new ArrayList<>();
+
 
         confirmaAeropuerto1(aeropuertos1);
         confirmaAeropuerto2(aeropuertos2);
@@ -182,4 +189,6 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
+
+
 }
