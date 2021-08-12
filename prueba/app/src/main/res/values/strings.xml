@@ -26,6 +26,7 @@
     <string name="tipo">TIPO</string>
     <string name="escala">ESCALA</string>
     <string name="PRECIO">PRECIO</string>
+    <string name="alerta">ALERTA COLOR</string>
     <string-array name="countries">
         <item>Albania</item>
         <item>Alemania</item>

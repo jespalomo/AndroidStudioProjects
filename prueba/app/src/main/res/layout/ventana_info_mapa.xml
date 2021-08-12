@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp" >
+
+    <ImageView
+        android:id="@+id/info_window_imagen"
+        android:layout_width="73dp"
+        android:layout_height="81dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mask_icono" />
+
+    <TextView
+        android:id="@+id/info_window_primera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/oswald_medium"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_toRightOf="@id/info_window_imagen"
+        android:paddingLeft="5dp"
+        android:text="Carlo Estrada Solano" />
+
+    <TextView
+        android:id="@+id/info_window_segunda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_window_primera"
+        android:fontFamily="@font/oswald_light"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_toRightOf="@id/info_window_imagen"
+        android:paddingLeft="5dp"
+        android:text="@string/restrictions_" />
+
+    <TextView
+        android:id="@+id/info_window_tercera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/oswald_light"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/info_window_segunda"
+        android:layout_toRightOf="@id/info_window_imagen"
+        android:paddingLeft="5dp"
+        android:text="@string/city1" />
+
+</RelativeLayout>

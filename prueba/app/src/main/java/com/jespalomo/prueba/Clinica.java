@@ -1,11 +1,22 @@
 package com.jespalomo.prueba;
 
-public class Clinica {
+import java.io.Serializable;
+
+public class Clinica implements Serializable {
     private int id;
-    private int idPais;
+    private String pais;
     private double latVertical;
     private double latHorizontal;
     private String nombre;
+
+    public Clinica(int id, String pais, double latVertical, double latHorizontal, String nombre) {
+        this.id = id;
+        this.pais = pais;
+        this.latVertical = latVertical;
+        this.latHorizontal = latHorizontal;
+        this.nombre = nombre;
+    }
+
     public Clinica(){
 
     }
@@ -18,12 +29,12 @@ public class Clinica {
         this.id = id;
     }
 
-    public int getIdPais() {
-        return idPais;
+    public String getPais() {
+        return pais;
     }
 
-    public void setIdPais(int idPais) {
-        this.idPais = idPais;
+    public void setPais(String idPais) {
+        this.pais = pais;
     }
 
     public double getLatVertical() {

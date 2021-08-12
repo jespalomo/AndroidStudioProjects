@@ -27,6 +27,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.jespalomo.prueba.databinding.ActivityUbicacionBinding;
 
@@ -34,17 +35,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
 
+    LatLng clinica;
     private GoogleMap mMap;
     private ActivityUbicacionBinding binding;
-    private int id, numClinicas;
-
-    private double latVertical,latHorizontal;
-    //private String nombre, nombre1;
-
-    Clinica c = new Clinica();
-
+    List<Clinica> clinicas = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +53,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getLocalizacion();
-        id = getIntent().getIntExtra("idPais",0);
-        numClinicas = getIntent().getIntExtra("numClinicas",0);
-        latVertical = getIntent().getDoubleExtra("latVertical", 0.00);
-        latHorizontal = getIntent().getDoubleExtra("latHorizontal", 0.00);
-
+        clinicas = (List<Clinica>) getIntent().getSerializableExtra("Clinicas");
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -102,6 +97,25 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
 
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
+        for(int i=0; i<clinicas.size(); i++){
+            clinica = new LatLng(clinicas.get(i).getLatVertical(), clinicas.get(i).getLatHorizontal());
+            Clinica c = new Clinica(clinicas.get(i).getId(),clinicas.get(i).getPais(),
+                    clinicas.get(i).getLatVertical(),clinicas.get(i).getLatHorizontal(),clinicas.get(i).getNombre());
+            mMap.addMarker(new MarkerOptions()
+                    .position(clinica)
+                    .title(c.getNombre())
+                    .snippet(c.getPais()+"\nTeléfono: "));
+            /*MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(clinica)
+                    .title(clinicas.get(i).getNombre());
+            Marker m2 = mMap.addMarker(markerOptions);
+            m2.setTag(pais2);
+
+             */
+
+        }
+
+
         LocationManager locationManager = (LocationManager) Ubicacion.this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             @Override
@@ -109,7 +123,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                 LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(miUbicacion).title("Ubicacion actual"));
 
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
+               /* mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(miUbicacion)
                         .zoom(14)
@@ -118,8 +132,14 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                         .build();
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-            }
 
+                */
+            }
+            LatLng city1_ = new LatLng(clinicas.get(0).getLatVertical(),clinicas.get(0).getLatHorizontal());
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(city1_)
+                    .zoom(7)
+                    .build();
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
 
@@ -136,15 +156,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             }
         };
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        buscaClinica(id,c,googleMap);
-        /*
-        LatLng a = new LatLng(latVertical, latHorizontal);
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(a)
-                .zoom(5)
-                .build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        */
+
     }
 
     private void consulta(String URL, Clinica c){
@@ -173,13 +185,5 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         );
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
-    }
-    private void buscaClinica(int id, Clinica c, GoogleMap googleMap){
-        mMap = googleMap;
-        LatLng cli;
-        consulta("http://192.168.0.44/dev/consultaubi.php?idPais="+id+"", c);
-        //Toast.makeText(getApplicationContext(), c.getNombre(), Toast.LENGTH_SHORT).show();
-        cli= new LatLng(c.getLatVertical(), c.getLatHorizontal());
-        mMap.addMarker(new MarkerOptions().position(cli).title(c.getNombre()));
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,7 +121,7 @@ public class MainActivity extends AppCompatActivity{
     }
     //Metodo para descargar datos de la bdd y transferir los datos a la actividad de detalles
     public void botonSpecs(View view){
-        if(!pais1.getNombre().isEmpty() && !pais2.getNombre().isEmpty() ){
+        if(!input1.isEmpty() && !input2.isEmpty() ){
             Intent next = new Intent(this, ListaVuelos.class);
             next.putExtra("Pais1", pais1);
             next.putExtra("Pais2", pais2);
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity{
                     try {
                         jsonObject = response.getJSONObject(i);
                         p.setId(jsonObject.getInt("id"));
-                        p.setNombre(jsonObject.getString("nombre"));
+                        p.setNombre(codificar(jsonObject.getString("nombre")));
                         p.setRestricciones(jsonObject.getString("restricciones"));
                         p.setLatVertical(jsonObject.getDouble("latVertical"));
                         p.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
@@ -169,7 +174,7 @@ public class MainActivity extends AppCompatActivity{
                 for (int i = 0; i < response.length(); i++) {
                     try {
                        jsonObject = response.getJSONObject(i);
-                        aeropuertos.add(new Aeropuerto(jsonObject.getInt("id"),jsonObject.getString("nombre"),
+                        aeropuertos.add(new Aeropuerto(jsonObject.getInt("id"),codificar(jsonObject.getString("nombre")),
                                 jsonObject.getDouble("latVertical"), jsonObject.getDouble("latHorizontal"),
                                 jsonObject.getString("pais"),jsonObject.getString("codigo"), jsonObject.getInt("coeficiente")));
                         //Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
@@ -190,5 +195,16 @@ public class MainActivity extends AppCompatActivity{
         requestQueue.add(jsonArrayRequest);
     }
 
+    private String codificar(String cadena){
+        String str = "";
+        try {
+            str = new String(cadena.getBytes("ISO-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+
+            e.printStackTrace();
+        }
+
+        return Html.fromHtml(str).toString();
+    }
 
 }

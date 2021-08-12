@@ -6,8 +6,10 @@ import androidx.fragment.app.FragmentActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +20,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CustomCap;
 import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -29,8 +32,8 @@ public class MapsActivity extends AppCompatActivity implements
     private static final int colores []= {0xff3be155,0xfff5a905,0xfff50505};
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    Pais pais1;
-    Pais pais2;
+    Pais pais1=new Pais();
+    Pais pais2=new Pais();
     ListElement vuelo;
     private static final int COLOR_BLACK_ARGB = 0xff000333;
     private static final int POLYLINE_STROKE_WIDTH_PX = 12;
@@ -80,25 +83,41 @@ public class MapsActivity extends AppCompatActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng city1_ = new LatLng(vuelo.getLatVertical1(), vuelo.getLatHorizontal1());
-        LatLng city2_ = new LatLng(vuelo.getLatVertical2(), vuelo.getLatHorizontal2());
-        mMap.addMarker(new MarkerOptions().position(city1_).title(vuelo.getNombre1()));
-        mMap.addMarker(new MarkerOptions().position(city2_).title(vuelo.getNombre2()));
+        final LatLng aeropuerto1 = new LatLng(vuelo.getLatVertical1(), vuelo.getLatHorizontal1());
+        final LatLng aeropuerto2 = new LatLng(vuelo.getLatVertical2(), vuelo.getLatHorizontal2());
+
+        mMap.addMarker(new MarkerOptions().position(aeropuerto1).title(vuelo.getNombre1()));
+
+        MarkerOptions markerOptions2 = new MarkerOptions();
+        markerOptions2.position(aeropuerto2)
+                .title(vuelo.getNombre2());
+
+
         Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(
-                        city1_,
-                        city2_)
+                        aeropuerto1,
+                        aeropuerto2)
                 .color(colores[pais2.getAlerta()])
                 );
         polyline1.setTag("Ruta mas corta");
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(city1_)
+                .target(aeropuerto1)
                 .zoom(7)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
+        CustomInfoWindowAdapter customInfoWindow = new CustomInfoWindowAdapter(this);
+        mMap.setInfoWindowAdapter(customInfoWindow);
+
+
+        Marker m2 = mMap.addMarker(markerOptions2);
+        m2.setTag(pais2);
+        m2.showInfoWindow();
     }
+
 
 
     /**
