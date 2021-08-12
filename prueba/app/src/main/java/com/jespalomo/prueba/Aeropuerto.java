@@ -9,18 +9,28 @@ public class Aeropuerto implements Serializable {
     public double latHorizontal;
     public String pais;
     public String codigo;
+    public int coeficiente;
 
-    public Aeropuerto(int id, String nombre, double latVertical, double latHorizontal, String pais, String codigo) {
+
+    public Aeropuerto(int id, String nombre, double latVertical, double latHorizontal, String pais, String codigo, int coeficiente) {
         this.id = id;
         this.nombre = nombre;
         this.latVertical = latVertical;
         this.latHorizontal = latHorizontal;
         this.pais = pais;
         this.codigo = codigo;
+        this.coeficiente = coeficiente;
     }
 
     public Aeropuerto() {
 
+    }
+    public int getCoeficiente() {
+        return coeficiente;
+    }
+
+    public void setCoeficiente(int coeficiente) {
+        this.coeficiente = coeficiente;
     }
 
     public int getId() {

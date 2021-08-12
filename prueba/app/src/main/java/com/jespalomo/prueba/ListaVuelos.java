@@ -54,7 +54,11 @@ public class ListaVuelos extends AppCompatActivity {
             for(int j=0; j<aeropuertos2.size(); j++){
                 dis = haversine(aeropuertos1.get(i).getLatHorizontal(), aeropuertos1.get(i).getLatVertical(),
                         aeropuertos2.get(j).getLatHorizontal(), aeropuertos2.get(j).getLatVertical());
-                precio=Math.round(dis/3);
+                if(dis>1000){
+                    precio= (int) Math.round(dis/(aeropuertos1.get(i).getCoeficiente()*aeropuertos2.get(j).getCoeficiente()));
+                }else{
+                    precio= (int) Math.round(dis/(aeropuertos1.get(i).getCoeficiente()*aeropuertos2.get(j).getCoeficiente())+50);
+                }
                 elements.add(new ListElement(aeropuertos1.get(i).getCodigo()+" - "+aeropuertos2.get(j).getCodigo(),
                         Integer.toString(dis)+" KM", precio+ " €",aeropuertos1.get(i).getNombre(),aeropuertos2.get(j).getNombre(),
                         aeropuertos1.get(i).getLatVertical(), aeropuertos2.get(j).getLatVertical(),
