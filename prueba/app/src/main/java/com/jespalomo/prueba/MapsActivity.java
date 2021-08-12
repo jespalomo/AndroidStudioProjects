@@ -109,7 +109,7 @@ public class MapsActivity extends AppCompatActivity implements
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-        CustomInfoWindowAdapterClinicas customInfoWindow = new CustomInfoWindowAdapterClinicas(this);
+        CustomInfoWindowAdapter customInfoWindow = new CustomInfoWindowAdapter(this);
         mMap.setInfoWindowAdapter(customInfoWindow);
 
 

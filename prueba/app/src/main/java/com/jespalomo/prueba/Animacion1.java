@@ -2,9 +2,14 @@ package com.jespalomo.prueba;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -32,8 +37,20 @@ public class Animacion1 extends AppCompatActivity {
             @Override
             public void run() {
                 Intent next = new Intent(Animacion1.this, Seleccion.class);
-                startActivity(next);
-                finish();
+
+                Pair[] pairs = new Pair[2];
+                pairs[0] = new Pair<View, String>(logo, "logoTrans");
+                pairs[1] = new Pair<View, String>(titulo, "textTrans");
+
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Animacion1.this, pairs);
+                    startActivity(next, options.toBundle());
+                }else{
+                    startActivity(next);
+                    finish();
+                }
+
+
             }
         }, 4000);
     }

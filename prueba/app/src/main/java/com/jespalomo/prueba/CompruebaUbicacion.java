@@ -65,7 +65,7 @@ public class CompruebaUbicacion extends AppCompatActivity {
     public void confirma1(){
         if(!input1.isEmpty()){
             consulta("http://192.168.0.44/dev/consultaubi.php?pais="+input1+"");
-            Toast.makeText(getApplicationContext(),"Pais de origen: "+ input1,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Seleccionado: "+ input1,Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(getApplicationContext(),"Introduce un pais",Toast.LENGTH_SHORT).show();
         }
