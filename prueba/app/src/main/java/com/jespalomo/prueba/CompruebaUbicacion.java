@@ -80,7 +80,8 @@ public class CompruebaUbicacion extends AppCompatActivity {
                         jsonObject = response.getJSONObject(i);
                         clinicas.add(new Clinica(jsonObject.getInt("id"), codificar(jsonObject.getString("pais")),
                                 jsonObject.getDouble("latVertical"),jsonObject.getDouble("latHorizontal"),
-                                jsonObject.getString("nombre")));
+                                jsonObject.getString("nombre"),codificar(jsonObject.getString("telefono")),
+                                codificar(jsonObject.getString("direccion"))));
                         Toast.makeText(getApplicationContext(), clinicas.get(i).getNombre(), Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

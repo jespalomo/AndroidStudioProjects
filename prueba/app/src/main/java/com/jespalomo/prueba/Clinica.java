@@ -8,18 +8,40 @@ public class Clinica implements Serializable {
     private double latVertical;
     private double latHorizontal;
     private String nombre;
+    private String telefono;
+    private String direccion;
 
-    public Clinica(int id, String pais, double latVertical, double latHorizontal, String nombre) {
+
+
+    public Clinica(int id, String pais, double latVertical, double latHorizontal, String nombre, String telefono, String direccion) {
         this.id = id;
         this.pais = pais;
         this.latVertical = latVertical;
         this.latHorizontal = latHorizontal;
         this.nombre = nombre;
+        this.telefono = telefono;
+        this.direccion = direccion;
     }
 
     public Clinica(){
 
     }
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
 
     public int getId() {
         return id;

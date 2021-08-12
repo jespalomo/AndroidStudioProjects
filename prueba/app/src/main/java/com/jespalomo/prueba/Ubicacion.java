@@ -41,6 +41,7 @@ import java.util.List;
 public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
 
     LatLng clinica;
+    List<Marker> m=new ArrayList<>();
     private GoogleMap mMap;
     private ActivityUbicacionBinding binding;
     List<Clinica> clinicas = new ArrayList<>();
@@ -100,21 +101,21 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         for(int i=0; i<clinicas.size(); i++){
             clinica = new LatLng(clinicas.get(i).getLatVertical(), clinicas.get(i).getLatHorizontal());
             Clinica c = new Clinica(clinicas.get(i).getId(),clinicas.get(i).getPais(),
-                    clinicas.get(i).getLatVertical(),clinicas.get(i).getLatHorizontal(),clinicas.get(i).getNombre());
-            mMap.addMarker(new MarkerOptions()
-                    .position(clinica)
-                    .title(c.getNombre())
-                    .snippet(c.getPais()+"\nTeléfono: "));
-            /*MarkerOptions markerOptions = new MarkerOptions();
+                    clinicas.get(i).getLatVertical(),clinicas.get(i).getLatHorizontal(),
+                    clinicas.get(i).getNombre(),clinicas.get(i).getTelefono(), clinicas.get(i).getDireccion());
+            MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(clinica)
-                    .title(clinicas.get(i).getNombre());
-            Marker m2 = mMap.addMarker(markerOptions);
-            m2.setTag(pais2);
-
-             */
-
+                    .title(c.getNombre());
+            Marker mar = mMap.addMarker(markerOptions);
+            mar.setTag(c);
+            m.add(mar);
         }
-
+        LatLng city1_ = new LatLng(clinicas.get(0).getLatVertical(),clinicas.get(0).getLatHorizontal());
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(city1_)
+                .zoom(5)
+                .build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         LocationManager locationManager = (LocationManager) Ubicacion.this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
@@ -135,11 +136,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
 
                 */
             }
-            LatLng city1_ = new LatLng(clinicas.get(0).getLatVertical(),clinicas.get(0).getLatHorizontal());
-            CameraPosition cameraPosition = new CameraPosition.Builder()
-                    .target(city1_)
-                    .zoom(7)
-                    .build();
+
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
 
@@ -156,7 +153,8 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             }
         };
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-
+        CustomInfoWindowAdapterClinicas customInfoWindow = new CustomInfoWindowAdapterClinicas(this);
+        mMap.setInfoWindowAdapter(customInfoWindow);
     }
 
     private void consulta(String URL, Clinica c){
