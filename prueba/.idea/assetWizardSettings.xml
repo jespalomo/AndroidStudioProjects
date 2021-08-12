@@ -42,6 +42,19 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\jespa\Downloads\descarga.png" />
+                                                <entry key="opacityPercent" value="80" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="text">
                                         <value>
                                           <PersistentState>
@@ -68,7 +81,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="mask_icono" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\jespa\Downloads\descarga.png" />
+                                      <entry key="outputName" value="a" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="10a2ce" />
                                     </map>
@@ -336,8 +351,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_airplane_ticket_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\jespa\Downloads\airplane_ticket_black_24dp.svg" />
+                            <entry key="outputName" value="logo_app" />
+                            <entry key="sourceFile" value="C:\Users\jespa\Downloads\virus_covid_travel_coronavirus_airplane_icon_141745.svg" />
                           </map>
                         </option>
                       </PersistentState>
