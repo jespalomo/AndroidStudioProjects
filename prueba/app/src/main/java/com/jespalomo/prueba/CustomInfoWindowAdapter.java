@@ -15,7 +15,8 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     Context context;
     Pais pais=new Pais();
 
-    private static final int colores []= {0xff3be155,0xff3be155,0xfff50505};
+    private static final int coloresmasc []= {0xff3be155,0xff3be155,0xfff50505};
+    private static final int colores []= {0xff3be155,0xfff5a905,0xfff50505};
     private String riesgo[]= {"Pais con riesgo bajo",
     "Pais con riesgo intermedio",
     "Pais con alto riesgo"};
@@ -37,8 +38,9 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
             pais = (Pais) m.getTag();
             ((TextView) v.findViewById(R.id.info_window_tercera)).setText(mascarillas[pais.getAlerta()]);
             ((TextView) v.findViewById(R.id.info_window_segunda)).setText(riesgo[pais.getAlerta()]);
+            ((TextView) v.findViewById(R.id.info_window_segunda)).setTextColor(colores[pais.getAlerta()]);
             ((TextView) v.findViewById(R.id.info_window_primera)).setText(pais.getNombre());
-            ((ImageView) v.findViewById(R.id.info_window_imagen)).setColorFilter(colores[pais.getAlerta()]);
+            ((ImageView) v.findViewById(R.id.info_window_imagen)).setColorFilter(coloresmasc[pais.getAlerta()]);
         }
         return v;
     }
