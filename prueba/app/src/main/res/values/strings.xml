@@ -5,9 +5,13 @@
     <string name="botonmapa">VER EN EL MAPA</string>
     <string name="botonspecs">VER DETALLES DEL VIAJE</string>
     <string name="confirmar">CONFIRMAR SELECCION</string>
+    <string name="home">IR A INICIO</string>
     <string name="botonubi">CLÍNICAS EN MI ZONA</string>
     <string name="botonmain">PLANEAR UN VIAJE</string>
-    <string name="home">Home</string>
+    <string name="about">SOBRE EL AUTOR</string>
+    <string name="nombre">JESÚS MANUEL PALOMO VEGA</string>
+    <string name="datossobremi">Estudiante de Ingeniería Informática en la Universidad de Jaén (2016-2021)</string>
+    <string name="email">Email: jmvp0005@red.ujaen.es</string>
     <string name="trip">TRIP</string>
     <string name="entrada">COVID TRAVELLER</string>
     <string name="entrada_">¿QUÉ QUIERES HACER?</string>

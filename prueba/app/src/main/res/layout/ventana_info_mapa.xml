@@ -21,7 +21,7 @@
         android:textSize="18sp"
         android:layout_toRightOf="@id/info_window_imagen"
         android:paddingLeft="5dp"
-        android:text="Carlo Estrada Solano" />
+        android:text="@string/city2" />
 
     <TextView
         android:id="@+id/info_window_segunda"

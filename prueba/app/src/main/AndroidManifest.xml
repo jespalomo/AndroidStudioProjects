@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Prueba"
         android:usesCleartextTraffic="true">
+        <activity android:name=".SobreMi"></activity>
         <activity android:name=".Animacion1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Seleccion"></activity>
+        <activity android:name=".Seleccion" />
         <activity android:name=".ListaVuelos" />
         <activity
             android:name=".CompruebaUbicacion"

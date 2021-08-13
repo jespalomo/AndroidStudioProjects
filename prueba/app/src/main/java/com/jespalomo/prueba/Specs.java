@@ -11,10 +11,16 @@ import android.widget.TextView;
 
 public class Specs extends AppCompatActivity {
     private int dis;
-    TextView trip, restricciones_, distancia;
+    TextView trip, restricciones_, distancia, borders, borders_;
     Pais pais1;
     Pais pais2;
     ListElement vuelo;
+    private String riesgo[]= {"Pais con riesgo bajo",
+            "Pais con riesgo intermedio",
+            "Pais con alto riesgo"};
+    private String mascarillas[]= {"Mascarilla no obligatoria al aire libre",
+            "Mascarilla no obligatoria al aire libre",
+            "Mascarilla obligatoria al aire libre"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +31,14 @@ public class Specs extends AppCompatActivity {
         vuelo = (ListElement) getIntent().getSerializableExtra("Vuelo");
 
         trip = findViewById(R.id.pregunta);
+        borders = findViewById(R.id.borders);
+        borders_ = findViewById(R.id.borders_);
         distancia= findViewById(R.id.distancia_);
         restricciones_ = findViewById(R.id.restrictions_);
         trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + pais2.getNombre());
         distancia.setText(vuelo.getDuracion());
+        borders.setText("Situación actual en "+ pais2.getNombre());
+        borders.setText(riesgo[pais2.getAlerta()]+"\n"+mascarillas[pais2.getAlerta()]);
         restricciones_.setText("Frontera de "+pais2.getNombre()+":\n "+pais2.getRestricciones());
     }
     public boolean onCreateOptionsMenu(Menu menu){
@@ -41,6 +51,18 @@ public class Specs extends AppCompatActivity {
 
         if (id == R.id.home) {
             Intent next = new Intent(this, Seleccion.class);
+            startActivity(next);
+            return true;
+        }else if(id == R.id.clinicas){
+            Intent next = new Intent(this, CompruebaUbicacion.class);
+            startActivity(next);
+            return true;
+        }else if(id == R.id.planearviaje){
+            Intent next = new Intent(this, MainActivity.class);
+            startActivity(next);
+            return true;
+        }else if(id == R.id.about){
+            Intent next = new Intent(this, SobreMi.class);
             startActivity(next);
             return true;
         }

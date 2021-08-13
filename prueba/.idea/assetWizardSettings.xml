@@ -358,11 +358,26 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/person/baseline_person_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="logo_app" />
-                            <entry key="sourceFile" value="C:\Users\jespa\Downloads\virus_covid_travel_coronavirus_airplane_icon_141745.svg" />
+                            <entry key="outputName" value="ic_travel_explore_white_24dp" />
+                            <entry key="sourceFile" value="C:\Users\jespa\Downloads\travel_explore_white_24dp.svg" />
                           </map>
                         </option>
                       </PersistentState>

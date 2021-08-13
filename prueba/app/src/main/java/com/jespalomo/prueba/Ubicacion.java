@@ -68,6 +68,18 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             Intent next = new Intent(this, MainActivity.class);
             startActivity(next);
             return true;
+        }else if(id == R.id.clinicas){
+            Intent next = new Intent(this, CompruebaUbicacion.class);
+            startActivity(next);
+            return true;
+        }else if(id == R.id.planearviaje){
+            Intent next = new Intent(this, MainActivity.class);
+            startActivity(next);
+            return true;
+        }else if(id == R.id.about){
+            Intent next = new Intent(this, SobreMi.class);
+            startActivity(next);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
