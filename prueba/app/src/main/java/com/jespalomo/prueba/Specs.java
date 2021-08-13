@@ -38,7 +38,7 @@ public class Specs extends AppCompatActivity {
         trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + pais2.getNombre());
         distancia.setText(vuelo.getDuracion());
         borders.setText("Situación actual en "+ pais2.getNombre());
-        borders.setText(riesgo[pais2.getAlerta()]+"\n"+mascarillas[pais2.getAlerta()]);
+        borders_.setText(riesgo[pais2.getAlerta()]+"\n"+mascarillas[pais2.getAlerta()]);
         restricciones_.setText("Frontera de "+pais2.getNombre()+":\n "+pais2.getRestricciones());
     }
     public boolean onCreateOptionsMenu(Menu menu){
