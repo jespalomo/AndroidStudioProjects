@@ -10,9 +10,10 @@ public class Aeropuerto implements Serializable {
     public String pais;
     public String codigo;
     public int coeficiente;
+    public int idPais;
+    public int alerta;
 
-
-    public Aeropuerto(int id, String nombre, double latVertical, double latHorizontal, String pais, String codigo, int coeficiente) {
+    public Aeropuerto(int id, String nombre, double latVertical, double latHorizontal, String pais, String codigo, int coeficiente, int idPais, int alerta) {
         this.id = id;
         this.nombre = nombre;
         this.latVertical = latVertical;
@@ -20,6 +21,25 @@ public class Aeropuerto implements Serializable {
         this.pais = pais;
         this.codigo = codigo;
         this.coeficiente = coeficiente;
+        this.idPais = idPais;
+        this.alerta = alerta;
+    }
+
+
+    public int getAlerta() {
+        return alerta;
+    }
+
+    public void setAlerta(int alerta) {
+        this.alerta = alerta;
+    }
+
+    public int getIdPais() {
+        return idPais;
+    }
+
+    public void setIdPais(int idPais) {
+        this.idPais = idPais;
     }
 
     public Aeropuerto() {

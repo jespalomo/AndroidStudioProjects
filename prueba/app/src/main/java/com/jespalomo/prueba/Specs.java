@@ -35,10 +35,10 @@ public class Specs extends AppCompatActivity {
         borders_ = findViewById(R.id.borders_);
         distancia= findViewById(R.id.distancia_);
         restricciones_ = findViewById(R.id.restrictions_);
-        trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + pais2.getNombre());
+        trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + vuelo.getDestino());
         distancia.setText(vuelo.getDuracion());
-        borders.setText("Situación actual en "+ pais2.getNombre());
-        borders_.setText(riesgo[pais2.getAlerta()]+"\n"+mascarillas[pais2.getAlerta()]);
+        borders.setText("Situación actual en "+ vuelo.getDestino());
+        borders_.setText(riesgo[vuelo.getAlerta()]+"\n"+mascarillas[vuelo.getAlerta()]);
         restricciones_.setText("Frontera de "+pais2.getNombre()+":\n "+pais2.getRestricciones());
     }
     public boolean onCreateOptionsMenu(Menu menu){

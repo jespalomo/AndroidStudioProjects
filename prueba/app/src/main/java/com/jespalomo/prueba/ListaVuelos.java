@@ -6,9 +6,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Switch;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +34,51 @@ public class ListaVuelos extends AppCompatActivity {
     List<Aeropuerto> aeropuertos2;
     Pais pais1;
     Pais pais2;
-    Aeropuerto aeropuerto1;
-    Aeropuerto aeropuerto2;
-    private int dis=0, precio=0;
+    Switch switch_;
+    RequestQueue requestQueue;
+    Aeropuerto aeropuerto1 = new Aeropuerto();
+    Aeropuerto aeropuerto2 = new Aeropuerto();
+    private int dis=0, precio=0, a1, a2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_vuelos);
         pais1 = (Pais) getIntent().getSerializableExtra("Pais1");
         pais2 = (Pais) getIntent().getSerializableExtra("Pais2");
-        //aeropuerto1 = (Aeropuerto) getIntent().getSerializableExtra("Aeropuerto1");
-        //aeropuerto2 = (Aeropuerto) getIntent().getSerializableExtra("Aeropuerto2");
+        switch_= (Switch) findViewById(R.id.switch1);
+        a1=pais2.getId()-1;
+        a2=pais2.getId()+1;
+        if(a1!=0){
+            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos2.php?idPais="+a1+"", aeropuerto1);
+        }
+        if(a2!=42){
+            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos2.php?idPais="+a2+"", aeropuerto2);
+        }
         aeropuertos1 = (List<Aeropuerto>) getIntent().getSerializableExtra("Aeropuertos1");
         aeropuertos2 = (List<Aeropuerto>) getIntent().getSerializableExtra("Aeropuertos2");
         init();
+    }
+
+    public void bot(View view){
+        if(view.getId()==R.id.switch1){
+            if(switch_.isChecked()){
+                if(a1!=0){
+                    aeropuertos2.add(aeropuerto1);
+                }
+                if(a2!=42){
+                    aeropuertos2.add(aeropuerto2);
+                }
+                init();
+            }else{
+                if(a1!=0){
+                    aeropuertos2.remove(aeropuertos2.size()-1);
+                }
+                if(a2!=42){
+                    aeropuertos2.remove(aeropuertos2.size()-1);
+                }
+                init();
+            }
+        }
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -72,9 +118,10 @@ public class ListaVuelos extends AppCompatActivity {
                     precio= (int) Math.round(dis/(aeropuertos1.get(i).getCoeficiente()*aeropuertos2.get(j).getCoeficiente())+50);
                 }
                 elements.add(new ListElement(aeropuertos1.get(i).getCodigo()+" - "+aeropuertos2.get(j).getCodigo(),
-                        Integer.toString(dis)+" KM", precio+ " €",aeropuertos1.get(i).getNombre(),aeropuertos2.get(j).getNombre(),
-                        aeropuertos1.get(i).getLatVertical(), aeropuertos2.get(j).getLatVertical(),
-                        aeropuertos1.get(i).getLatHorizontal(),aeropuertos2.get(j).getLatHorizontal()));
+                        Integer.toString(dis)+" KM", precio+ " €",aeropuertos1.get(i).getNombre(),
+                        aeropuertos2.get(j).getNombre(), aeropuertos1.get(i).getLatVertical(),
+                        aeropuertos2.get(j).getLatVertical(), aeropuertos1.get(i).getLatHorizontal(),
+                        aeropuertos2.get(j).getLatHorizontal(), aeropuertos2.get(j).getPais(), aeropuertos2.get(j).getAlerta()));
             }
         }
         //dis = haversine(aeropuerto1.getLatHorizontal(), aeropuerto1.getLatVertical(),
@@ -129,4 +176,50 @@ public class ListaVuelos extends AppCompatActivity {
         return (int)distancia;
 
     }
+
+    private void consultaAeropuertos(String URL, Aeropuerto a){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        a.setId(jsonObject.getInt("id"));
+                        a.setNombre(codificar(jsonObject.getString("nombre")));
+                        a.setLatVertical(jsonObject.getDouble("latVertical"));
+                        a.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
+                        a.setPais(jsonObject.getString("pais"));
+                        a.setCodigo(jsonObject.getString("codigo"));
+                        a.setCoeficiente(jsonObject.getInt("coeficiente"));
+                        a.setIdPais(jsonObject.getInt("idPais"));
+                        //Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
+
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+    private String codificar(String cadena){
+        String str = "";
+        try {
+            str = new String(cadena.getBytes("ISO-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+
+            e.printStackTrace();
+        }
+
+        return Html.fromHtml(str).toString();
+    }
+
 }

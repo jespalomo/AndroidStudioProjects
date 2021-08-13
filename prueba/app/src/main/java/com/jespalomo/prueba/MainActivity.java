@@ -188,7 +188,8 @@ public class MainActivity extends AppCompatActivity{
                        jsonObject = response.getJSONObject(i);
                         aeropuertos.add(new Aeropuerto(jsonObject.getInt("id"),codificar(jsonObject.getString("nombre")),
                                 jsonObject.getDouble("latVertical"), jsonObject.getDouble("latHorizontal"),
-                                jsonObject.getString("pais"),jsonObject.getString("codigo"), jsonObject.getInt("coeficiente")));
+                                jsonObject.getString("pais"),jsonObject.getString("codigo"), jsonObject.getInt("coeficiente"),
+                                jsonObject.getInt("idPais"),jsonObject.getInt("alerta")));
                         //Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
 
                     } catch (JSONException e) {

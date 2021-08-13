@@ -24,6 +24,7 @@
     <string name="restrictions">RESTRICCIONES</string>
     <string name="restrictions_">PCR test...</string>
     <string name="vuelos">VUELOS DISPONIBLES</string>
+    <string name="switch_">Incluir destinos cercanos</string>
     <string name="fecha">FECHA</string>
     <string name="duracion">DURACION</string>
     <string name="ruta">RUTA</string>
