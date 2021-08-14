@@ -7,32 +7,34 @@ public class Aeropuerto implements Serializable {
     public String nombre;
     public double latVertical;
     public double latHorizontal;
-    public String pais;
     public String codigo;
     public int coeficiente;
     public int idPais;
-    public int alerta;
+    Pais p;
 
-    public Aeropuerto(int id, String nombre, double latVertical, double latHorizontal, String pais, String codigo, int coeficiente, int idPais, int alerta) {
+    public Aeropuerto(int id, String nombre, double latVertical, double latHorizontal, String codigo, int coeficiente, int idPais, Pais p) {
         this.id = id;
         this.nombre = nombre;
         this.latVertical = latVertical;
         this.latHorizontal = latHorizontal;
-        this.pais = pais;
         this.codigo = codigo;
         this.coeficiente = coeficiente;
         this.idPais = idPais;
-        this.alerta = alerta;
+        this.p = p;
     }
 
+    public Aeropuerto() {
 
-    public int getAlerta() {
-        return alerta;
     }
 
-    public void setAlerta(int alerta) {
-        this.alerta = alerta;
+    public Pais getP() {
+        return p;
     }
+
+    public void setP(Pais p) {
+        this.p = p;
+    }
+
 
     public int getIdPais() {
         return idPais;
@@ -42,9 +44,6 @@ public class Aeropuerto implements Serializable {
         this.idPais = idPais;
     }
 
-    public Aeropuerto() {
-
-    }
     public int getCoeficiente() {
         return coeficiente;
     }
@@ -83,14 +82,6 @@ public class Aeropuerto implements Serializable {
 
     public void setLatHorizontal(double latHorizontal) {
         this.latHorizontal = latHorizontal;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
     }
 
     public String getCodigo() {

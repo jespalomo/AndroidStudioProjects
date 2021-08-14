@@ -28,16 +28,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaVuelos extends AppCompatActivity {
-
     List<ListElement> elements;
-    List<Aeropuerto> aeropuertos1;
-    List<Aeropuerto> aeropuertos2;
-    Pais pais1;
-    Pais pais2;
-    Switch switch_;
+    List<Aeropuerto> aeropuertos1 = new ArrayList<>();
+    List<Aeropuerto> aeropuertos2 = new ArrayList<>();
     RequestQueue requestQueue;
-    Aeropuerto aeropuerto1 = new Aeropuerto();
-    Aeropuerto aeropuerto2 = new Aeropuerto();
+    Pais pais1=new Pais();
+    Pais pais2=new Pais();
+    Pais pais3=new Pais();
+    Pais pais4=new Pais();
+    Aeropuerto aeropuerto1=new Aeropuerto();
+    Aeropuerto aeropuerto2=new Aeropuerto();
+    Switch switch_;
     private int dis=0, precio=0, a1, a2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,22 +46,26 @@ public class ListaVuelos extends AppCompatActivity {
         setContentView(R.layout.activity_lista_vuelos);
         pais1 = (Pais) getIntent().getSerializableExtra("Pais1");
         pais2 = (Pais) getIntent().getSerializableExtra("Pais2");
-        switch_= (Switch) findViewById(R.id.switch1);
         a1=pais2.getId()-1;
         a2=pais2.getId()+1;
+
+
         if(a1!=0){
-            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos2.php?idPais="+a1+"", aeropuerto1);
+            consulta("http://192.168.0.44/dev/consultapaises2.php?id="+a1+"",pais3);
+            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos2.php?idPais="+a1+"",aeropuerto1, pais3);
         }
         if(a2!=42){
-            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos2.php?idPais="+a2+"", aeropuerto2);
+            consulta("http://192.168.0.44/dev/consultapaises2.php?id="+a2+"",pais4);
+            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos2.php?idPais="+a2+"",aeropuerto2, pais4);
         }
+        switch_ = (Switch) findViewById(R.id.switch1);
         aeropuertos1 = (List<Aeropuerto>) getIntent().getSerializableExtra("Aeropuertos1");
         aeropuertos2 = (List<Aeropuerto>) getIntent().getSerializableExtra("Aeropuertos2");
         init();
     }
 
-    public void bot(View view){
-        if(view.getId()==R.id.switch1){
+    public void bot(View v){
+        if(v.getId()==R.id.switch1){
             if(switch_.isChecked()){
                 if(a1!=0){
                     aeropuertos2.add(aeropuerto1);
@@ -118,19 +123,18 @@ public class ListaVuelos extends AppCompatActivity {
                     precio= (int) Math.round(dis/(aeropuertos1.get(i).getCoeficiente()*aeropuertos2.get(j).getCoeficiente())+50);
                 }
                 elements.add(new ListElement(aeropuertos1.get(i).getCodigo()+" - "+aeropuertos2.get(j).getCodigo(),
-                        Integer.toString(dis)+" KM", precio+ " €",aeropuertos1.get(i).getNombre(),
-                        aeropuertos2.get(j).getNombre(), aeropuertos1.get(i).getLatVertical(),
-                        aeropuertos2.get(j).getLatVertical(), aeropuertos1.get(i).getLatHorizontal(),
-                        aeropuertos2.get(j).getLatHorizontal(), aeropuertos2.get(j).getPais(), aeropuertos2.get(j).getAlerta()));
+                        Integer.toString(dis)+" KM", precio+ " €",aeropuertos1.get(i).getNombre(),aeropuertos2.get(j).getNombre(),
+                        aeropuertos1.get(i).getLatVertical(), aeropuertos2.get(j).getLatVertical(),
+                        aeropuertos1.get(i).getLatHorizontal(),aeropuertos2.get(j).getLatHorizontal(), aeropuertos2.get(j).getP()));
             }
         }
         //dis = haversine(aeropuerto1.getLatHorizontal(), aeropuerto1.getLatVertical(),
-          //      aeropuerto2.getLatHorizontal(), aeropuerto2.getLatVertical());
-       // precio=Math.round(dis/3);
-       // elements.add(new ListElement(aeropuerto1.getCodigo()+" - "+aeropuerto2.getCodigo(), Integer.toString(dis)+" KM",
-                //recio+ " €", aeropuerto1.getNombre(),aeropuerto2.getNombre(),
-                //aeropuerto1.getLatVertical(), aeropuerto2.getLatVertical(),
-                //aeropuerto1.getLatHorizontal(),aeropuerto2.getLatHorizontal()));
+        //      aeropuerto2.getLatHorizontal(), aeropuerto2.getLatVertical());
+        // precio=Math.round(dis/3);
+        // elements.add(new ListElement(aeropuerto1.getCodigo()+" - "+aeropuerto2.getCodigo(), Integer.toString(dis)+" KM",
+        //recio+ " €", aeropuerto1.getNombre(),aeropuerto2.getNombre(),
+        //aeropuerto1.getLatVertical(), aeropuerto2.getLatVertical(),
+        //aeropuerto1.getLatHorizontal(),aeropuerto2.getLatHorizontal()));
         //elements.add(new ListElement("MAD-VIE", "DIRECTO - 2h 30min", "102€"));
         //elements.add(new ListElement("BCN-LJU", "DIRECTO - 1h 55min", "113€"));
 
@@ -176,8 +180,7 @@ public class ListaVuelos extends AppCompatActivity {
         return (int)distancia;
 
     }
-
-    private void consultaAeropuertos(String URL, Aeropuerto a){
+    private void consultaAeropuertos(String URL, Aeropuerto a, Pais p){
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -189,12 +192,50 @@ public class ListaVuelos extends AppCompatActivity {
                         a.setNombre(codificar(jsonObject.getString("nombre")));
                         a.setLatVertical(jsonObject.getDouble("latVertical"));
                         a.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
-                        a.setPais(jsonObject.getString("pais"));
                         a.setCodigo(jsonObject.getString("codigo"));
                         a.setCoeficiente(jsonObject.getInt("coeficiente"));
                         a.setIdPais(jsonObject.getInt("idPais"));
-                        //Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
+                        a.setP(p);
 
+                        Toast.makeText(getApplicationContext(),a.getCodigo(),Toast.LENGTH_SHORT).show();
+                        /*a = new Aeropuerto(jsonObject.getInt("id"),codificar(jsonObject.getString("nombre")),
+                                jsonObject.getDouble("latVertical"), jsonObject.getDouble("latHorizontal"),
+                                jsonObject.getString("pais"),jsonObject.getString("codigo"), jsonObject.getInt("coeficiente"),
+                                jsonObject.getInt("idPais"),jsonObject.getInt("alerta"));
+
+                         */
+
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+    private void consulta(String URL, Pais p){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        p.setId(jsonObject.getInt("id"));
+                        p.setNombre(codificar(jsonObject.getString("nombre")));
+                        p.setRestricciones(jsonObject.getString("restricciones"));
+                        p.setLatVertical(jsonObject.getDouble("latVertical"));
+                        p.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
+                        //p.setLatVertClinica(jsonObject.getDouble("latVertClinica"));
+                        // p.setLatHorClinica(jsonObject.getDouble("latHorClinica"));
+                        p.setAlerta(jsonObject.getInt("alerta"));
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -221,5 +262,4 @@ public class ListaVuelos extends AppCompatActivity {
 
         return Html.fromHtml(str).toString();
     }
-
 }

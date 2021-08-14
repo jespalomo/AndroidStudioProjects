@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity{
         input1 = c1.getText().toString();
         if(!input1.isEmpty()){
             consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input1+"",pais1);
-            Toast.makeText(getApplicationContext(),"Pais de origen: "+ input1,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"Pais de origen: "+ input1,Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(getApplicationContext(),"Introduce pais de origen",Toast.LENGTH_SHORT).show();
         }
@@ -107,8 +107,8 @@ public class MainActivity extends AppCompatActivity{
     public void confirma2(){
         input2 = c2.getText().toString();
         if(!input2.isEmpty()){
-        consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input2+"", pais2);
-        Toast.makeText(getApplicationContext(),"Pais de destino: "+ input2,Toast.LENGTH_SHORT).show();
+            consulta("http://192.168.0.44/dev/consultabien.php?nombre="+input2+"", pais2);
+            //Toast.makeText(getApplicationContext(),"Pais de destino: "+ input2,Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(getApplicationContext(),"Introduce pais de destino",Toast.LENGTH_SHORT).show();
         }
@@ -116,13 +116,13 @@ public class MainActivity extends AppCompatActivity{
     public void confirmaAeropuerto1(List<Aeropuerto> aeropuertos){
         input1 = c1.getText().toString();
         if(!input1.isEmpty()) {
-            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos.php?pais=" + input1 + "", aeropuertos);
+            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos.php?pais=" +input1+ "", aeropuertos, pais1);
         }
     }
     public void confirmaAeropuerto2(List<Aeropuerto> aeropuertos){
         input2 = c2.getText().toString();
         if(!input2.isEmpty()){
-            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos.php?pais="+input2+ "", aeropuertos);
+            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos.php?pais="+input2+ "", aeropuertos, pais2);
         }
     }
     public void confirmaAeropuerto(){
@@ -160,9 +160,8 @@ public class MainActivity extends AppCompatActivity{
                         p.setRestricciones(jsonObject.getString("restricciones"));
                         p.setLatVertical(jsonObject.getDouble("latVertical"));
                         p.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
-                        //p.setLatVertClinica(jsonObject.getDouble("latVertClinica"));
-                       // p.setLatHorClinica(jsonObject.getDouble("latHorClinica"));
                         p.setAlerta(jsonObject.getInt("alerta"));
+                        Toast.makeText(getApplicationContext(),"Pais: "+ p.getNombre(),Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -178,7 +177,7 @@ public class MainActivity extends AppCompatActivity{
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
     }
-    private void consultaAeropuertos(String URL, List<Aeropuerto> aeropuertos){
+    private void consultaAeropuertos(String URL, List<Aeropuerto> aeropuertos, Pais p){
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -188,9 +187,9 @@ public class MainActivity extends AppCompatActivity{
                        jsonObject = response.getJSONObject(i);
                         aeropuertos.add(new Aeropuerto(jsonObject.getInt("id"),codificar(jsonObject.getString("nombre")),
                                 jsonObject.getDouble("latVertical"), jsonObject.getDouble("latHorizontal"),
-                                jsonObject.getString("pais"),jsonObject.getString("codigo"), jsonObject.getInt("coeficiente"),
-                                jsonObject.getInt("idPais"),jsonObject.getInt("alerta")));
-                        //Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
+                                jsonObject.getString("codigo"), jsonObject.getInt("coeficiente"),
+                                jsonObject.getInt("idPais"), p));
+                        Toast.makeText(getApplicationContext(),aeropuertos.get(i).getCodigo(),Toast.LENGTH_SHORT).show();
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

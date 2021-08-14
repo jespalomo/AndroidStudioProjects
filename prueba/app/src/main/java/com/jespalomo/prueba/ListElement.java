@@ -12,11 +12,9 @@ public class ListElement implements Serializable {
     public Double latVertical2;
     public Double latHorizontal1;
     public Double latHorizontal2;
-    public String destino;
-    public int alerta;
+    Pais p;
 
-
-    public ListElement(String ruta, String duracion, String tipo, String nombre1, String nombre2, Double latVertical1, Double latVertical2, Double latHorizontal1, Double latHorizontal2, String destino, int alerta) {
+    public ListElement(String ruta, String duracion, String tipo, String nombre1, String nombre2, Double latVertical1, Double latVertical2, Double latHorizontal1, Double latHorizontal2, Pais p) {
         this.ruta = ruta;
         this.duracion = duracion;
         this.tipo = tipo;
@@ -26,25 +24,22 @@ public class ListElement implements Serializable {
         this.latVertical2 = latVertical2;
         this.latHorizontal1 = latHorizontal1;
         this.latHorizontal2 = latHorizontal2;
-        this.destino = destino;
-        this.alerta = alerta;
+        this.p = p;
+    }
+
+    public Pais getP() {
+        return p;
+    }
+
+    public void setP(Pais p) {
+        this.p = p;
     }
 
 
-    public int getAlerta() {
-        return alerta;
+    public ListElement() {
+
     }
 
-    public void setAlerta(int alerta) {
-        this.alerta = alerta;
-    }
-    public String getDestino() {
-        return destino;
-    }
-
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
 
     public String getNombre1() {
         return nombre1;

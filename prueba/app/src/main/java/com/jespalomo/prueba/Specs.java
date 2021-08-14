@@ -35,11 +35,11 @@ public class Specs extends AppCompatActivity {
         borders_ = findViewById(R.id.borders_);
         distancia= findViewById(R.id.distancia_);
         restricciones_ = findViewById(R.id.restrictions_);
-        trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + vuelo.getDestino());
+        trip.setText("Viaje desde " + pais1.getNombre() + " hasta " + vuelo.getP().getNombre());
         distancia.setText(vuelo.getDuracion());
-        borders.setText("Situación actual en "+ vuelo.getDestino());
-        borders_.setText(riesgo[vuelo.getAlerta()]+"\n"+mascarillas[vuelo.getAlerta()]);
-        restricciones_.setText("Frontera de "+pais2.getNombre()+":\n "+pais2.getRestricciones());
+        borders.setText("Situación actual en "+ vuelo.getP().getNombre());
+        borders_.setText(riesgo[vuelo.getP().getAlerta()]+"\n"+mascarillas[vuelo.getP().getAlerta()]);
+        restricciones_.setText("Frontera de "+vuelo.getP().getNombre()+":\n "+vuelo.getP().getRestricciones());
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -94,7 +94,6 @@ public class Specs extends AppCompatActivity {
     public void botonMapa(View view){
         Intent next = new Intent(this, MapsActivity.class);
         next.putExtra("Pais1", pais1);
-        next.putExtra("Pais2", pais2);
         next.putExtra("Vuelo", vuelo);
         startActivity(next);
     }

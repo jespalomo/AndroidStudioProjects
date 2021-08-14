@@ -45,7 +45,6 @@ public class MapsActivity extends AppCompatActivity implements
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         pais1 = (Pais) getIntent().getSerializableExtra("Pais1");
-        pais2 = (Pais) getIntent().getSerializableExtra("Pais2");
         vuelo = (ListElement) getIntent().getSerializableExtra("Vuelo");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -110,7 +109,7 @@ public class MapsActivity extends AppCompatActivity implements
                 .add(
                         aeropuerto1,
                         aeropuerto2)
-                .color(colores[pais2.getAlerta()])
+                .color(colores[vuelo.getP().getAlerta()])
                 );
         polyline1.setTag("Ruta mas corta");
 
@@ -126,7 +125,7 @@ public class MapsActivity extends AppCompatActivity implements
 
 
         Marker m2 = mMap.addMarker(markerOptions2);
-        m2.setTag(pais2);
+        m2.setTag(vuelo);
         m2.showInfoWindow();
     }
 

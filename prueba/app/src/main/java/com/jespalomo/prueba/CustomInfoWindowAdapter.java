@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.Marker;
 public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     Context context;
-    Pais pais=new Pais();
+    ListElement vuelo=new ListElement();
 
     private static final int coloresmasc []= {0xff3be155,0xff3be155,0xfff50505};
     private static final int colores []= {0xff3be155,0xfff5a905,0xfff50505};
@@ -35,12 +35,12 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         View v = ((Activity)context).getLayoutInflater()
                 .inflate(R.layout.ventana_info_mapa, null);
         if(m!=null) {
-            pais = (Pais) m.getTag();
-            ((TextView) v.findViewById(R.id.info_window_tercera)).setText(mascarillas[pais.getAlerta()]);
-            ((TextView) v.findViewById(R.id.info_window_segunda)).setText(riesgo[pais.getAlerta()]);
-            ((TextView) v.findViewById(R.id.info_window_segunda)).setTextColor(colores[pais.getAlerta()]);
-            ((TextView) v.findViewById(R.id.info_window_primera)).setText(pais.getNombre());
-            ((ImageView) v.findViewById(R.id.info_window_imagen)).setColorFilter(coloresmasc[pais.getAlerta()]);
+            vuelo = (ListElement) m.getTag();
+            ((TextView) v.findViewById(R.id.info_window_tercera)).setText(mascarillas[vuelo.getP().getAlerta()]);
+            ((TextView) v.findViewById(R.id.info_window_segunda)).setText(riesgo[vuelo.getP().getAlerta()]);
+            ((TextView) v.findViewById(R.id.info_window_segunda)).setTextColor(colores[vuelo.getP().getAlerta()]);
+            ((TextView) v.findViewById(R.id.info_window_primera)).setText(vuelo.getP().getNombre());
+            ((ImageView) v.findViewById(R.id.info_window_imagen)).setColorFilter(coloresmasc[vuelo.getP().getAlerta()]);
         }
         return v;
     }
