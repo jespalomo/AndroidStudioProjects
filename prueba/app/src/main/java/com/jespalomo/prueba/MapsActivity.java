@@ -115,7 +115,7 @@ public class MapsActivity extends AppCompatActivity implements
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(aeropuerto1)
-                .zoom(7)
+                .zoom(5)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 

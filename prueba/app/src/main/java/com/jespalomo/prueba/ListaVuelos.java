@@ -50,13 +50,13 @@ public class ListaVuelos extends AppCompatActivity {
         a2=pais2.getId()+1;
 
 
-        if(a1!=0){
-            consulta("http://192.168.0.44/dev/consultapaises2.php?id="+a1+"",pais3);
-            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos2.php?idPais="+a1+"",aeropuerto1, pais3);
+        if(a1!=0 && a1!=pais1.getId()){
+            consulta("http://192.168.0.43/dev/consultapaises2.php?id="+a1+"",pais3);
+            consultaAeropuertos("http://192.168.0.43/dev/consultaaeropuertos2.php?idPais="+a1+"",aeropuerto1, pais3);
         }
-        if(a2!=42){
-            consulta("http://192.168.0.44/dev/consultapaises2.php?id="+a2+"",pais4);
-            consultaAeropuertos("http://192.168.0.44/dev/consultaaeropuertos2.php?idPais="+a2+"",aeropuerto2, pais4);
+        if(a2!=34 && a2!=pais1.getId()){
+            consulta("http://192.168.0.43/dev/consultapaises2.php?id="+a2+"",pais4);
+            consultaAeropuertos("http://192.168.0.43/dev/consultaaeropuertos2.php?idPais="+a2+"",aeropuerto2, pais4);
         }
         switch_ = (Switch) findViewById(R.id.switch1);
         aeropuertos1 = (List<Aeropuerto>) getIntent().getSerializableExtra("Aeropuertos1");
@@ -67,18 +67,18 @@ public class ListaVuelos extends AppCompatActivity {
     public void bot(View v){
         if(v.getId()==R.id.switch1){
             if(switch_.isChecked()){
-                if(a1!=0){
+                if(a1!=0 && a1!=pais1.getId()){
                     aeropuertos2.add(aeropuerto1);
                 }
-                if(a2!=42){
+                if(a2!=34 && a2!=pais1.getId()){
                     aeropuertos2.add(aeropuerto2);
                 }
                 init();
             }else{
-                if(a1!=0){
+                if(a1!=0 && a1!=pais1.getId()){
                     aeropuertos2.remove(aeropuertos2.size()-1);
                 }
-                if(a2!=42){
+                if(a2!=42 && a2!=pais1.getId()){
                     aeropuertos2.remove(aeropuertos2.size()-1);
                 }
                 init();

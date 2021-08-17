@@ -53,8 +53,9 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        getLocalizacion();
+        //getLocalizacion();
         clinicas = (List<Clinica>) getIntent().getSerializableExtra("Clinicas");
+        Toast.makeText(getApplicationContext(), clinicas.get(0).getNombre(), Toast.LENGTH_SHORT).show();
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -83,6 +84,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         }
         return super.onOptionsItemSelected(item);
     }
+    /*
     private void getLocalizacion() {
         int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
         if(permiso == PackageManager.PERMISSION_DENIED){
@@ -93,10 +95,12 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         }
     }
 
+     */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+       /* if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -110,6 +114,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
 
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
+        */
         for(int i=0; i<clinicas.size(); i++){
             clinica = new LatLng(clinicas.get(i).getLatVertical(), clinicas.get(i).getLatHorizontal());
             Clinica c = new Clinica(clinicas.get(i).getId(),clinicas.get(i).getPais(),
@@ -121,6 +126,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             Marker mar = mMap.addMarker(markerOptions);
             mar.setTag(c);
             m.add(mar);
+            Toast.makeText(getApplicationContext(), clinicas.get(i).getNombre(), Toast.LENGTH_SHORT).show();
         }
         LatLng city1_ = new LatLng(clinicas.get(0).getLatVertical(),clinicas.get(0).getLatHorizontal());
         CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -128,7 +134,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                 .zoom(5)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
+        /*
         LocationManager locationManager = (LocationManager) Ubicacion.this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             @Override
@@ -136,7 +142,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                 LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(miUbicacion).title("Ubicacion actual"));
 
-               /* mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
+              mMap.moveCamera(CameraUpdateFactory.newLatLng(miUbicacion));
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(miUbicacion)
                         .zoom(14)
@@ -146,7 +152,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
-                */
+
             }
 
             @Override
@@ -163,37 +169,15 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             public void onProviderDisabled(String provider) {
 
             }
+
+
         };
+
+
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+         */
         CustomInfoWindowAdapterClinicas customInfoWindow = new CustomInfoWindowAdapterClinicas(this);
         mMap.setInfoWindowAdapter(customInfoWindow);
     }
 
-    private void consulta(String URL, Clinica c){
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                JSONObject jsonObject = null;
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        jsonObject = response.getJSONObject(i);
-                        c.setId(jsonObject.getInt("id"));
-                        c.setLatVertical(jsonObject.getDouble("latVertical"));
-                        c.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
-                        c.setNombre(jsonObject.getString("nombre"));
-                    } catch (JSONException e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
-        );
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-    }
 }
