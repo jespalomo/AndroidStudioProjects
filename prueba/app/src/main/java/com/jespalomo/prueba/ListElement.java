@@ -14,7 +14,8 @@ public class ListElement implements Serializable {
     public Double latHorizontal2;
     Pais p;
 
-    public ListElement(String ruta, String duracion, String tipo, String nombre1, String nombre2, Double latVertical1, Double latVertical2, Double latHorizontal1, Double latHorizontal2, Pais p) {
+    public ListElement(String ruta, String duracion, String tipo, String nombre1, String nombre2,
+                       Double latVertical1, Double latVertical2, Double latHorizontal1, Double latHorizontal2, Pais p) {
         this.ruta = ruta;
         this.duracion = duracion;
         this.tipo = tipo;

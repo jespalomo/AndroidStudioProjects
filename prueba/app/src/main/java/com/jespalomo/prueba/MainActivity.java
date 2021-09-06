@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity{
         input1 = c1.getText().toString();
         if(!input1.isEmpty()){
             consulta("http://192.168.0.43/dev/consultabien.php?nombre="+input1+"",pais1);
-            //Toast.makeText(getApplicationContext(),"Pais de origen: "+ input1,Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(getApplicationContext(),"Introduce pais de origen",Toast.LENGTH_SHORT).show();
         }
@@ -140,7 +139,7 @@ public class MainActivity extends AppCompatActivity{
             next.putExtra("Aeropuertos1", (Serializable) aeropuertos1);
             next.putExtra("Aeropuertos2", (Serializable) aeropuertos2);
             startActivity(next);
-        }else if(pais1.getNombre().isEmpty()){
+        }else if(input1.isEmpty()){
             Toast.makeText(getApplicationContext(),"Confirma pais de origen",Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(),"Confirma pais de destino",Toast.LENGTH_SHORT).show();

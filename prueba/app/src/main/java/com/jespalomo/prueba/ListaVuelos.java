@@ -128,16 +128,6 @@ public class ListaVuelos extends AppCompatActivity {
                         aeropuertos1.get(i).getLatHorizontal(),aeropuertos2.get(j).getLatHorizontal(), aeropuertos2.get(j).getP()));
             }
         }
-        //dis = haversine(aeropuerto1.getLatHorizontal(), aeropuerto1.getLatVertical(),
-        //      aeropuerto2.getLatHorizontal(), aeropuerto2.getLatVertical());
-        // precio=Math.round(dis/3);
-        // elements.add(new ListElement(aeropuerto1.getCodigo()+" - "+aeropuerto2.getCodigo(), Integer.toString(dis)+" KM",
-        //recio+ " €", aeropuerto1.getNombre(),aeropuerto2.getNombre(),
-        //aeropuerto1.getLatVertical(), aeropuerto2.getLatVertical(),
-        //aeropuerto1.getLatHorizontal(),aeropuerto2.getLatHorizontal()));
-        //elements.add(new ListElement("MAD-VIE", "DIRECTO - 2h 30min", "102€"));
-        //elements.add(new ListElement("BCN-LJU", "DIRECTO - 1h 55min", "113€"));
-
         ListAdapter listAdapter = new ListAdapter(elements, this, new ListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ListElement item) {
@@ -229,8 +219,8 @@ public class ListaVuelos extends AppCompatActivity {
                     try {
                         jsonObject = response.getJSONObject(i);
                         p.setId(jsonObject.getInt("id"));
-                        p.setNombre(codificar(jsonObject.getString("nombre")));
-                        p.setRestricciones(jsonObject.getString("restricciones"));
+                        p.setNombre(codificar(codificar(jsonObject.getString("nombre"))));
+                        p.setRestricciones(codificar(jsonObject.getString("restricciones")));
                         p.setLatVertical(jsonObject.getDouble("latVertical"));
                         p.setLatHorizontal(jsonObject.getDouble("latHorizontal"));
                         //p.setLatVertClinica(jsonObject.getDouble("latVertClinica"));

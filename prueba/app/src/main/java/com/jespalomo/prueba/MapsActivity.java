@@ -1,10 +1,15 @@
 package com.jespalomo.prueba;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,6 +20,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.CustomCap;
@@ -97,7 +103,8 @@ public class MapsActivity extends AppCompatActivity implements
         final LatLng aeropuerto1 = new LatLng(vuelo.getLatVertical1(), vuelo.getLatHorizontal1());
         final LatLng aeropuerto2 = new LatLng(vuelo.getLatVertical2(), vuelo.getLatHorizontal2());
 
-        mMap.addMarker(new MarkerOptions().position(aeropuerto1).title(vuelo.getNombre1()));
+        mMap.addMarker(new MarkerOptions().position(aeropuerto1).title(vuelo.getNombre1())
+                .icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.despegue)));
 
         MarkerOptions markerOptions2 = new MarkerOptions();
         markerOptions2.position(aeropuerto2)
@@ -126,10 +133,19 @@ public class MapsActivity extends AppCompatActivity implements
 
         Marker m2 = mMap.addMarker(markerOptions2);
         m2.setTag(vuelo);
+        m2.setIcon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.aterrizaje));
         m2.showInfoWindow();
     }
 
-
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId){
+        Drawable vectorDrawable= ContextCompat.getDrawable(context,vectorResId);
+        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap=Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
 
     /**
      * Styles the polyline, based on type.

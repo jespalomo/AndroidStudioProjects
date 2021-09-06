@@ -12,7 +12,8 @@ public class Pais implements Serializable {
     private String restricciones;
     private String nombre;
 
-    public Pais(int id, int numClinicas, double latVertical, double latHorizontal, double latVertClinica, double latHorClinica, String restricciones, String nombre, int alerta) {
+    public Pais(int id, int numClinicas, double latVertical, double latHorizontal, double latVertClinica, double latHorClinica,
+                String restricciones, String nombre, int alerta) {
         this.id = id;
         this.numClinicas = numClinicas;
         this.latVertical = latVertical;

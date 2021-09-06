@@ -49,8 +49,6 @@ public class Animacion1 extends AppCompatActivity {
                     startActivity(next);
                     finish();
                 }
-
-
             }
         }, 4000);
     }

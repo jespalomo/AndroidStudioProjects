@@ -4,6 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -25,6 +29,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -55,7 +61,7 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
         //getLocalizacion();
         clinicas = (List<Clinica>) getIntent().getSerializableExtra("Clinicas");
-        Toast.makeText(getApplicationContext(), clinicas.get(0).getNombre(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), clinicas.get(0).getNombre(), Toast.LENGTH_SHORT).show();
     }
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -128,10 +134,15 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
             m.add(mar);
             Toast.makeText(getApplicationContext(), clinicas.get(i).getNombre(), Toast.LENGTH_SHORT).show();
         }
-        LatLng city1_ = new LatLng(clinicas.get(0).getLatVertical(),clinicas.get(0).getLatHorizontal());
+        LatLng city1_ = new LatLng(37.79030506068906, -3.7785987375772496);
+        MarkerOptions markerOptions2 = new MarkerOptions();
+        markerOptions2.position(city1_)
+                .title("Ubi actual");
+        Marker ubi = mMap.addMarker(markerOptions2);
+        ubi.setIcon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_my_location_24));
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(city1_)
-                .zoom(5)
+                .zoom(8)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         /*
@@ -179,5 +190,13 @@ public class Ubicacion extends FragmentActivity implements OnMapReadyCallback {
         CustomInfoWindowAdapterClinicas customInfoWindow = new CustomInfoWindowAdapterClinicas(this);
         mMap.setInfoWindowAdapter(customInfoWindow);
     }
-
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId){
+        Drawable vectorDrawable=ContextCompat.getDrawable(context,vectorResId);
+        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap=Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
 }
